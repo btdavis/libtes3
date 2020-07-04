@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="MemoryReader.h" />
+    <ClInclude Include="TES3Record.h" />
+    <ClInclude Include="TES3Subrecord.h" />
+    <ClInclude Include="TES3RecordIterator.h" />
+    <ClInclude Include="TES3SubrecordIterator.h" />
+    <ClInclude Include="TES3RecordType.h" />
+    <ClInclude Include="GMST.h" />
+    <ClInclude Include="TES3Plugin.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="MemoryReader.cpp" />
+    <ClCompile Include="TES3Record.cpp" />
+    <ClCompile Include="TES3Subrecord.cpp" />
+    <ClCompile Include="TES3RecordIterator.cpp" />
+    <ClCompile Include="TES3SubrecordIterator.cpp" />
+    <ClCompile Include="GMST.cpp" />
+    <ClCompile Include="TES3Plugin.cpp" />
+  </ItemGroup>
+</Project>
