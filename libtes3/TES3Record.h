@@ -5,25 +5,29 @@
 #include "TES3SubrecordIterator.h"
 #include "MemoryReader.h"
 
+#include <vector>
+#include <optional>
+
 class TES3Record
 {
 public:
-	void read(MemoryReader& reader);
+	TES3Record(MemoryReader& reader);
+
 	MemoryReader data() const;
 
 	TES3SubrecordIterator begin() const;
 	TES3SubrecordIterator end() const;
 
-	uint32_t type() const;
+	TES3RecordType type() const;
 	uint32_t header() const;
 	uint32_t flags() const;
 
-	TES3Subrecord::Optional firstSubrecord(TES3RecordType type) const;
+	std::optional<TES3Subrecord> firstSubrecord(TES3RecordType type) const;
 	std::vector<TES3Subrecord> allSubrecords(TES3RecordType type) const;
 
 protected:
 	MemoryReader m_reader;
-	uint32_t m_type = 0;
+	TES3RecordType m_type = 0;
 	uint32_t m_header = 0;
 	uint32_t m_flags = 0;
 };

@@ -2,21 +2,21 @@
 #define TES3SUBRECORD_H
 
 #include <optional>
+#include "TES3RecordType.h"
 #include "MemoryReader.h"
 
 class TES3Subrecord
 {
 public:
-	using Optional = std::optional<TES3Subrecord>;
+	TES3Subrecord(MemoryReader& reader);
 
-	void read(MemoryReader& reader);
 	MemoryReader data() const;
 
-	uint32_t type() const;
+	TES3RecordType type() const;
 
 private:
 	MemoryReader m_reader;
-	uint32_t m_type = 0;
+	TES3RecordType m_type = 0;
 };
 
 #endif

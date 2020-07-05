@@ -1,7 +1,6 @@
-#include "pch.h"
 #include "TES3Subrecord.h"
 
-void TES3Subrecord::read(MemoryReader& reader)
+TES3Subrecord::TES3Subrecord(MemoryReader& reader)
 {
 	uint32_t size;
 
@@ -17,7 +16,7 @@ MemoryReader TES3Subrecord::data() const
 	return m_reader.spanAll();
 }
 
-uint32_t TES3Subrecord::type() const
+TES3RecordType TES3Subrecord::type() const
 {
 	return m_type;
 }

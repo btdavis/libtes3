@@ -2,7 +2,9 @@
 #define TES3FILE_H
 
 #include <vector>
-#include "TES3RecordIterator.h"
+#include "TES3Record.h"
+#include "TES3RecordRange.h"
+#include "TES3TypedRecordRange.h"
 
 class TES3Plugin
 {
@@ -10,8 +12,13 @@ public:
 	TES3Plugin(const char* filename);
 	MemoryReader data();
 
-	TES3RecordIterator begin() const;
-	TES3RecordIterator end() const;
+	TES3RecordRange records() const;
+
+	template<typename T>
+	TES3TypedRecordRange<T> records() const
+	{
+		return TES3TypedRecordRange<T>(records());
+	}
 
 private:
 	MemoryReader m_reader;

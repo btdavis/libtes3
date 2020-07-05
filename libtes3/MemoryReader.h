@@ -20,10 +20,10 @@ public:
 	template<typename T>
 	bool read(T& value)
 	{
-		if (m_cur + sizeof(value) <= m_end)
+		if (m_cur + sizeof(T) <= m_end)
 		{
 			value = *(T*)m_cur;
-			m_cur += sizeof(value);
+			m_cur += sizeof(T);
 			return true;
 		}
 		else

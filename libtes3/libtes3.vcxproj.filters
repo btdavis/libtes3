@@ -8,8 +8,23 @@
     <ClInclude Include="TES3RecordIterator.h" />
     <ClInclude Include="TES3SubrecordIterator.h" />
     <ClInclude Include="TES3RecordType.h" />
-    <ClInclude Include="GMST.h" />
     <ClInclude Include="TES3Plugin.h" />
+    <ClInclude Include="RecordTypes\GMST.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\GLOB.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="libtes3.h" />
+    <ClInclude Include="TES3TypedRecordIterator.h" />
+    <ClInclude Include="TES3RecordRange.h" />
+    <ClInclude Include="TES3TypedRecordRange.h" />
+    <ClInclude Include="RecordTypes\LTEX.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\LAND.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -18,7 +33,24 @@
     <ClCompile Include="TES3Subrecord.cpp" />
     <ClCompile Include="TES3RecordIterator.cpp" />
     <ClCompile Include="TES3SubrecordIterator.cpp" />
-    <ClCompile Include="GMST.cpp" />
     <ClCompile Include="TES3Plugin.cpp" />
+    <ClCompile Include="RecordTypes\GLOB.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\GMST.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="TES3RecordRange.cpp" />
+    <ClCompile Include="RecordTypes\LTEX.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\LAND.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="RecordTypes">
+      <UniqueIdentifier>{db53fd60-bfa3-4aa8-8026-46af5d6441e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

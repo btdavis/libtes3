@@ -1,7 +1,6 @@
-#include "pch.h"
 #include "TES3Record.h"
 
-void TES3Record::read(MemoryReader& reader)
+TES3Record::TES3Record(MemoryReader& reader)
 {
 	uint32_t size;
 
@@ -29,7 +28,7 @@ TES3SubrecordIterator TES3Record::end() const
 	return TES3SubrecordIterator();
 }
 
-uint32_t TES3Record::type() const
+TES3RecordType TES3Record::type() const
 {
 	return m_type;
 }
@@ -44,13 +43,13 @@ uint32_t TES3Record::flags() const
 	return m_flags;
 }
 
-TES3Subrecord::Optional TES3Record::firstSubrecord(TES3RecordType type) const
+std::optional<TES3Subrecord> TES3Record::firstSubrecord(TES3RecordType type) const
 {
 	for (const auto& subrecord : (*this))
 	{
-		if (subrecord->type() == type)
+		if (subrecord.type() == type)
 		{
-			return *subrecord;
+			return subrecord;
 		}
 	}
 
@@ -63,9 +62,9 @@ std::vector<TES3Subrecord> TES3Record::allSubrecords(TES3RecordType type) const
 
 	for (const auto& subrecord : (*this))
 	{
-		if (subrecord->type() == type)
+		if (subrecord.type() == type)
 		{
-			result.push_back(*subrecord);
+			result.push_back(subrecord);
 		}
 	}
 
