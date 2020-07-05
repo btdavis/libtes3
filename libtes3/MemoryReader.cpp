@@ -50,6 +50,21 @@ bool MemoryReader::operator!=(const MemoryReader& other) const
 	return !(*this == other);
 }
 
+bool MemoryReader::readMemory(void* buf, size_t size)
+{
+	if (m_cur + size <= m_end)
+	{
+		memcpy(buf, m_cur, size);
+		m_cur += size;
+		return true;
+	}
+	else
+	{
+		m_cur = m_end;
+		return false;
+	}
+}
+
 bool MemoryReader::readString(std::string& value)
 {
 	std::string_view temp;
@@ -90,6 +105,8 @@ bool MemoryReader::readString(std::string_view& value)
 		}
 
 		value = std::string_view(strStart, m_cur - strStart);
+
+		m_cur++;
 
 		return true;
 	}

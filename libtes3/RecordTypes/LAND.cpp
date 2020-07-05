@@ -2,51 +2,38 @@
 
 LAND::LAND(const TES3Record& from)
 {
-	m_vertices.resize(65 * 65);
-	m_textureIndexes.resize(16 * 16);
-	
 	for (const auto& subrecord : from)
 	{
+		auto reader = subrecord.data();
+
 		if (subrecord.type() == MakeRecordType('INTV'))
 		{
-			subrecord.data().read(m_cellX);
-			subrecord.data().read(m_cellY);
+			reader.read(m_cellX);
+			reader.read(m_cellY);
 		}
 		else if (subrecord.type() == MakeRecordType('VNML'))
 		{
-			for (size_t i = 0; i < m_vertices.size(); i++)
-			{
-				subrecord.data().read(m_vertices[i].normal.x);
-				subrecord.data().read(m_vertices[i].normal.y);
-				subrecord.data().read(m_vertices[i].normal.z);
-			}
+			m_normals.resize(65 * 65);
+			reader.read(m_normals.data(), m_normals.size());
 		}
 		else if (subrecord.type() == MakeRecordType('VHGT'))
 		{
-			subrecord.data().read(m_heightOffset);
+			reader.read(m_heightOffset);
 
-			subrecord.data().seek(1); // unknown byte
+			reader.seek(1); // unknown byte
 
-			for (size_t i = 0; i < m_vertices.size(); i++)
-			{
-				subrecord.data().read(m_vertices[i].heightDelta);
-			}
+			m_heightDeltas.resize(65 * 65);
+			reader.read(m_heightDeltas.data(), m_heightDeltas.size());
 		}
 		else if (subrecord.type() == MakeRecordType('VCLR'))
 		{
-			for (size_t i = 0; i < m_vertices.size(); i++)
-			{
-				subrecord.data().read(m_vertices[i].color.r);
-				subrecord.data().read(m_vertices[i].color.g);
-				subrecord.data().read(m_vertices[i].color.b);
-			}
+			m_colors.resize(65 * 65);
+			reader.read(m_colors.data(), m_colors.size());
 		}
 		else if (subrecord.type() == MakeRecordType('VTEX'))
 		{
-			for (size_t i = 0; i < m_textureIndexes.size(); i++)
-			{
-				subrecord.data().read(m_textureIndexes[i]);
-			}
+			m_textureIndexes.resize(16 * 16);
+			reader.read(m_textureIndexes.data(), m_textureIndexes.size());
 		}
 	}
 }
@@ -66,18 +53,58 @@ float LAND::heightOffset() const
 	return m_heightOffset;
 }
 
-LAND::Vertex LAND::vertex(int x, int y) const
+int8_t LAND::heightDelta(int x, int y) const
 {
-	if (!m_vertices.empty())
+	size_t index = y * 65 + x;
+
+	if (m_heightDeltas.size() > index)
 	{
-		return m_vertices[y * 65 + x];
+		return m_heightDeltas[index];
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+LAND::Normal LAND::normal(int x, int y) const
+{
+	size_t index = y * 65 + x;
+
+	if (m_normals.size() > index)
+	{
+		return m_normals[index];
+	}
+	else
+	{
+		return Normal();
+	}
+}
+
+LAND::Color LAND::color(int x, int y) const
+{
+	size_t index = y * 65 + x;
+
+	if (m_colors.size() > index)
+	{
+		return m_colors[index];
+	}
+	else
+	{
+		return Color();
 	}
 }
 
 uint16_t LAND::textureIndex(int x, int y) const
 {
-	if (!m_textureIndexes.empty())
+	size_t index = y * 16 + x;
+
+	if (m_textureIndexes.size() > index)
 	{
-		return m_textureIndexes[y * 16 + x];
+		return m_textureIndexes[index];
+	}
+	else
+	{
+		return 0;
 	}
 }

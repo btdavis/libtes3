@@ -165,6 +165,8 @@
     <ClInclude Include="RecordTypes\GMST.h" />
     <ClInclude Include="RecordTypes\LAND.h" />
     <ClInclude Include="RecordTypes\LTEX.h" />
+    <ClInclude Include="RecordTypes\SCPT.h" />
+    <ClInclude Include="RecordTypes\STAT.h" />
     <ClInclude Include="TES3Plugin.h" />
     <ClInclude Include="MemoryReader.h" />
     <ClInclude Include="TES3Record.h" />
@@ -188,6 +190,8 @@
     <ClCompile Include="RecordTypes\GMST.cpp" />
     <ClCompile Include="RecordTypes\LAND.cpp" />
     <ClCompile Include="RecordTypes\LTEX.cpp" />
+    <ClCompile Include="RecordTypes\SCPT.cpp" />
+    <ClCompile Include="RecordTypes\STAT.cpp" />
     <ClCompile Include="TES3Plugin.cpp" />
     <ClCompile Include="TES3Record.cpp" />
     <ClCompile Include="TES3RecordIterator.cpp" />

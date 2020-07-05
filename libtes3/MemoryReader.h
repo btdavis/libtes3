@@ -20,18 +20,16 @@ public:
 	template<typename T>
 	bool read(T& value)
 	{
-		if (m_cur + sizeof(T) <= m_end)
-		{
-			value = *(T*)m_cur;
-			m_cur += sizeof(T);
-			return true;
-		}
-		else
-		{
-			m_cur = m_end;
-			return false;
-		}
+		return read(&value, 1);
 	}
+
+	template<typename T>
+	bool read(T *buf, size_t length)
+	{
+		return readMemory((void*)buf, sizeof(T) * length);
+	}
+
+	bool readMemory(void* buf, size_t size);
 
 	bool readString(std::string& value);
 	bool readString(std::string& value, size_t size);

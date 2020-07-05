@@ -4,14 +4,16 @@ GLOB::GLOB(const TES3Record& from)
 {
 	for (const auto& subrecord : from)
 	{
+		auto reader = subrecord.data();
+
 		if (subrecord.type() == MakeRecordType('NAME'))
 		{
-			subrecord.data().readString(m_name);
+			reader.readString(m_name);
 		}
 		else if (subrecord.type() == MakeRecordType('FNAM'))
 		{
 			char value;
-			subrecord.data().read(value);
+			reader.read(value);
 
 			switch (value)
 			{
@@ -31,7 +33,7 @@ GLOB::GLOB(const TES3Record& from)
 		}
 		else if (subrecord.type() == MakeRecordType('FLTV'))
 		{
-			subrecord.data().read(m_value);
+			reader.read(m_value);
 		}
 	}
 }

@@ -4,17 +4,19 @@ LTEX::LTEX(const TES3Record& from)
 {
 	for (const auto& subrecord : from)
 	{
+		auto reader = subrecord.data();
+
 		if (subrecord.type() == MakeRecordType('NAME'))
 		{
-			subrecord.data().readString(m_name);
+			reader.readString(m_name);
 		}
 		else if (subrecord.type() == MakeRecordType('INTV'))
 		{
-			subrecord.data().read(m_index);
+			reader.read(m_index);
 		}
 		else if (subrecord.type() == MakeRecordType('DATA'))
 		{
-			subrecord.data().readString(m_filename);
+			reader.readString(m_filename);
 		}
 	}
 }

@@ -25,6 +25,12 @@
     <ClInclude Include="RecordTypes\LAND.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
+    <ClInclude Include="RecordTypes\SCPT.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\STAT.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -45,6 +51,12 @@
       <Filter>RecordTypes</Filter>
     </ClCompile>
     <ClCompile Include="RecordTypes\LAND.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\SCPT.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\STAT.cpp">
       <Filter>RecordTypes</Filter>
     </ClCompile>
   </ItemGroup>

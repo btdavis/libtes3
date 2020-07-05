@@ -10,5 +10,7 @@
 #include "RecordTypes/GMST.h"
 #include "RecordTypes/LAND.h"
 #include "RecordTypes/LTEX.h"
+#include "RecordTypes/SCPT.h"
+#include "RecordTypes/STAT.h"
 
 #endif
