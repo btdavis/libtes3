@@ -13,11 +13,11 @@ public:
 	STAT(const TES3Record& from);
 
 	std::string name() const;
-	std::string filename() const;
+	std::string model() const;
 
 private:
 	std::string m_name;
-	std::string m_filename;
+	std::string m_model;
 };
 
 #endif

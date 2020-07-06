@@ -14,12 +14,12 @@ public:
 
 	std::string name() const;
 	int32_t index() const;
-	std::string filename() const;
+	std::string texture() const;
 
 private:
 	std::string m_name;
 	int32_t m_index = 0;
-	std::string m_filename;
+	std::string m_texture;
 };
 
 #endif

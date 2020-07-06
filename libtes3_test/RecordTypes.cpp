@@ -63,7 +63,7 @@ public:
 			if (ltex.name() == "Sand")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Tx_sand_01.tga", ltex.filename().c_str());
+				Assert::AreEqual("Tx_sand_01.tga", ltex.texture().c_str());
 			}
 		}
 
@@ -95,7 +95,7 @@ public:
 			if (stat.name() == "DoorMarker")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Marker_Arrow.nif", stat.filename().c_str());
+				Assert::AreEqual("Marker_Arrow.nif", stat.model().c_str());
 			}
 		}
 
@@ -112,6 +112,73 @@ public:
 			{
 				foundRecord = true;
 				Assert::IsTrue(scpt.script().find("Begin ajiraReports") != std::string::npos);
+			}
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
+	TEST_METHOD(ReadACTI)
+	{
+		bool foundRecord = false;
+
+		for (const auto& acti : g_plugin->records<ACTI>())
+		{
+			if (acti.name() == "furn_sign_inn_01")
+			{
+				foundRecord = true;
+				Assert::AreEqual("Imperial Tavern", acti.friendlyName().c_str());
+			}
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
+	TEST_METHOD(ReadCONT)
+	{
+		bool foundRecord = false;
+
+		for (const auto& cont : g_plugin->records<CONT>())
+		{
+			Logger::WriteMessage((cont.name() + " " + cont.friendlyName() + "\n").c_str());
+			if (cont.name() == "crate_01")
+			{
+				foundRecord = true;
+				Assert::AreEqual("Crate", cont.friendlyName().c_str());
+			}
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
+	TEST_METHOD(ReadDOOR)
+	{
+		bool foundRecord = false;
+
+		for (const auto& door : g_plugin->records<DOOR>())
+		{
+			Logger::WriteMessage((door.name() + " " + door.friendlyName() + "\n").c_str());
+			if (door.name() == "in_c_door_arched")
+			{
+				foundRecord = true;
+				Assert::AreEqual("Sturdy Arched Door", door.friendlyName().c_str());
+			}
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
+	TEST_METHOD(ReadLIGH)
+	{
+		bool foundRecord = false;
+
+		for (const auto& ligh : g_plugin->records<LIGH>())
+		{
+			Logger::WriteMessage((ligh.name() + " " + ligh.friendlyName() + "\n").c_str());
+			if (ligh.name() == "light_com_candle_03")
+			{
+				foundRecord = true;
+				Assert::AreEqual("Silver Candlestick", ligh.friendlyName().c_str());
 			}
 		}
 

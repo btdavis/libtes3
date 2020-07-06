@@ -1,6 +1,6 @@
-#include "STAT.h"
+#include "CONT.h"
 
-STAT::STAT(const TES3Record& from)
+CONT::CONT(const TES3Record& from)
 {
 	for (const auto& subrecord : from)
 	{
@@ -14,15 +14,24 @@ STAT::STAT(const TES3Record& from)
 		{
 			reader.readString(m_model);
 		}
+		else if (subrecord.type() == MakeRecordType('FNAM'))
+		{
+			reader.readString(m_friendlyName);
+		}
 	}
 }
 
-std::string STAT::name() const
+std::string CONT::name() const
 {
 	return m_name;
 }
 
-std::string STAT::model() const
+std::string CONT::model() const
 {
 	return m_model;
+}
+
+std::string CONT::friendlyName() const
+{
+	return m_friendlyName;
 }

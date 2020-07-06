@@ -31,6 +31,18 @@
     <ClInclude Include="RecordTypes\STAT.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
+    <ClInclude Include="RecordTypes\ACTI.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\CONT.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\DOOR.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\LIGH.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -57,6 +69,18 @@
       <Filter>RecordTypes</Filter>
     </ClCompile>
     <ClCompile Include="RecordTypes\STAT.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\ACTI.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\CONT.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\DOOR.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\LIGH.cpp">
       <Filter>RecordTypes</Filter>
     </ClCompile>
   </ItemGroup>

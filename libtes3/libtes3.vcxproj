@@ -161,9 +161,13 @@
   <ItemGroup>
     <ClInclude Include="libtes3.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RecordTypes\ACTI.h" />
+    <ClInclude Include="RecordTypes\CONT.h" />
+    <ClInclude Include="RecordTypes\DOOR.h" />
     <ClInclude Include="RecordTypes\GLOB.h" />
     <ClInclude Include="RecordTypes\GMST.h" />
     <ClInclude Include="RecordTypes\LAND.h" />
+    <ClInclude Include="RecordTypes\LIGH.h" />
     <ClInclude Include="RecordTypes\LTEX.h" />
     <ClInclude Include="RecordTypes\SCPT.h" />
     <ClInclude Include="RecordTypes\STAT.h" />
@@ -186,9 +190,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RecordTypes\ACTI.cpp" />
+    <ClCompile Include="RecordTypes\CONT.cpp" />
+    <ClCompile Include="RecordTypes\DOOR.cpp" />
     <ClCompile Include="RecordTypes\GLOB.cpp" />
     <ClCompile Include="RecordTypes\GMST.cpp" />
     <ClCompile Include="RecordTypes\LAND.cpp" />
+    <ClCompile Include="RecordTypes\LIGH.cpp" />
     <ClCompile Include="RecordTypes\LTEX.cpp" />
     <ClCompile Include="RecordTypes\SCPT.cpp" />
     <ClCompile Include="RecordTypes\STAT.cpp" />

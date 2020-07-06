@@ -16,7 +16,7 @@ LTEX::LTEX(const TES3Record& from)
 		}
 		else if (subrecord.type() == MakeRecordType('DATA'))
 		{
-			reader.readString(m_filename);
+			reader.readString(m_texture);
 		}
 	}
 }
@@ -31,7 +31,7 @@ int32_t LTEX::index() const
 	return m_index;
 }
 
-std::string LTEX::filename() const
+std::string LTEX::texture() const
 {
-	return m_filename;
+	return m_texture;
 }
