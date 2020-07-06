@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ClCompile>
+        <ResourceCompile>
+            <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        </ResourceCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Platform.ToLower())' == 'win32' And ( $(PlatformToolset.ToLower().IndexOf('v142')) &gt; -1 ) And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+        <Link>
+            <!-- 32 bit | v14x | Debug -->
+            <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\win32\debug\libtes3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Platform.ToLower())' == 'win32' And ( $(PlatformToolset.ToLower().IndexOf('v142')) &gt; -1 ) And ( $(Configuration.ToLower().IndexOf('release')) &gt; -1 )">
+        <Link>
+            <!-- 32 bit | v14x | Release -->
+            <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\win32\release\libtes3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Platform.ToLower())' == 'x64' And ( $(PlatformToolset.ToLower().IndexOf('v142')) &gt; -1 ) And ( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 )">
+        <Link>
+            <!-- 64 bit | v14x | Debug -->
+            <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\x64\debug\libtes3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Platform.ToLower())' == 'x64' And ( $(PlatformToolset.ToLower().IndexOf('v142')) &gt; -1 ) And ( $(Configuration.ToLower().IndexOf('release')) &gt; -1 )">
+        <Link>
+            <!-- 64 bit | v14x | Release -->
+            <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\x64\release\libtes3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+    </ItemDefinitionGroup>
+</Project>

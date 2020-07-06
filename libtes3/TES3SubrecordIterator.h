@@ -4,27 +4,32 @@
 #include "TES3Subrecord.h"
 #include <optional>
 
-class TES3SubrecordIterator
+namespace libtes3
 {
-public:
-	TES3SubrecordIterator();
-	TES3SubrecordIterator(const MemoryReader& reader);
 
-	bool isValid() const;
+	class TES3SubrecordIterator
+	{
+	public:
+		TES3SubrecordIterator();
+		TES3SubrecordIterator(const MemoryReader& reader);
 
-	bool operator==(const TES3SubrecordIterator& other) const;
-	bool operator!=(const TES3SubrecordIterator& other) const;
+		bool isValid() const;
 
-	TES3SubrecordIterator& operator++();
+		bool operator==(const TES3SubrecordIterator& other) const;
+		bool operator!=(const TES3SubrecordIterator& other) const;
 
-	TES3Subrecord& operator*();
-	const TES3Subrecord& operator*() const;
-	TES3Subrecord* operator->();
-	const TES3Subrecord* operator->() const;
+		TES3SubrecordIterator& operator++();
 
-private:
-	MemoryReader m_reader;
-	std::optional<TES3Subrecord> m_currentSubrecord = std::nullopt;
-};
+		TES3Subrecord& operator*();
+		const TES3Subrecord& operator*() const;
+		TES3Subrecord* operator->();
+		const TES3Subrecord* operator->() const;
+
+	private:
+		MemoryReader m_reader;
+		std::optional<TES3Subrecord> m_currentSubrecord = std::nullopt;
+	};
+
+}
 
 #endif

@@ -5,21 +5,26 @@
 
 #include "../TES3Record.h"
 
-class SCPT
+namespace libtes3
 {
-public:
-	static constexpr TES3RecordType Type = MakeRecordType('SCPT');
 
-	SCPT(const TES3Record& from);
+	class SCPT
+	{
+	public:
+		static constexpr TES3RecordType Type = MakeRecordType('SCPT');
 
-	std::string name() const;
-	std::vector<std::string> locals() const;
-	std::string script() const;
+		SCPT(const TES3Record& from);
 
-private:
-	std::string m_name;
-	std::vector<std::string> m_locals;
-	std::string m_script;
-};
+		std::string name() const;
+		std::vector<std::string> locals() const;
+		std::string script() const;
+
+	private:
+		std::string m_name;
+		std::vector<std::string> m_locals;
+		std::string m_script;
+	};
+
+}
 
 #endif

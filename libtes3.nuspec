@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>libtes3</id>
+        <version>0.2.0.0</version>
+        <title>libtes3</title>
+        <authors>btdavis</authors>
+        <owners>btdavis</owners>
+        <icon>images\icon.png</icon>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>C++ library for reading Morrowind plugin files.</description>
+        <tags>native nativepackage</tags>
+        <repository type="git" url="https://github.com/btdavis/libtes3" />
+        <license type="expression">MIT</license>
+    </metadata>
+    <files>
+        <file src="icon.png" target="images\" />
+
+        <file src="libtes3\*.h" target="build\native\include" />
+        <file src="libtes3\RecordTypes\*.h" target="build\native\include\RecordTypes" />
+ 
+        <file src="Debug\libtes3.lib" target="build\native\lib\win32\debug" />
+        <file src="Debug\libtes3.pdb" target="build\native\lib\win32\debug" />
+
+        <file src="Release\libtes3.lib" target="build\native\lib\win32\release" />
+
+        <file src="x64\Debug\libtes3.lib" target="build\native\lib\x64\debug" />
+        <file src="x64\Debug\libtes3.pdb" target="build\native\lib\x64\debug" />
+
+        <file src="x64\Release\libtes3.lib" target="build\native\lib\x64\release" />
+
+        <file src="libtes3.targets" target="build\native" />
+    </files>
+</package>

@@ -2,6 +2,8 @@
 
 #include "libtes3.h"
 
+using namespace libtes3;
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace libtes3_test

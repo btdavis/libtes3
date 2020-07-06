@@ -5,19 +5,24 @@
 
 #include "../TES3Record.h"
 
-class STAT
+namespace libtes3
 {
-public:
-	static constexpr TES3RecordType Type = MakeRecordType('STAT');
 
-	STAT(const TES3Record& from);
+	class STAT
+	{
+	public:
+		static constexpr TES3RecordType Type = MakeRecordType('STAT');
 
-	std::string name() const;
-	std::string model() const;
+		STAT(const TES3Record& from);
 
-private:
-	std::string m_name;
-	std::string m_model;
-};
+		std::string name() const;
+		std::string model() const;
+
+	private:
+		std::string m_name;
+		std::string m_model;
+	};
+
+}
 
 #endif

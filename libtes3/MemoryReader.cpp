@@ -1,163 +1,168 @@
 #include "MemoryReader.h"
 
-MemoryReader::MemoryReader()
-	: MemoryReader(nullptr, nullptr)
+namespace libtes3
 {
 
-}
-
-MemoryReader::MemoryReader(char* start, char* end)
-	: m_start(start),
-	m_end(end),
-	m_cur(start)
-{
-
-}
-
-MemoryReader::MemoryReader(char* start, size_t length)
-	: MemoryReader(start, start + length)
-{
-
-}
-
-MemoryReader MemoryReader::spanAll() const
-{
-	return span(0, size());
-}
-
-MemoryReader MemoryReader::spanNext(size_t length) const
-{
-	return span(pos(), length);
-}
-
-MemoryReader MemoryReader::span(size_t pos, size_t length) const
-{
-	return MemoryReader(m_start + pos, length);
-}
-
-bool MemoryReader::operator==(const MemoryReader& other) const
-{
-	if (eof() && other.eof())
+	MemoryReader::MemoryReader()
+		: MemoryReader(nullptr, nullptr)
 	{
-		return true;
+
 	}
 
-	return (m_start == other.m_start) && (m_end == other.m_end) && (m_cur == other.m_cur);
-}
+	MemoryReader::MemoryReader(char* start, char* end)
+		: m_start(start),
+		m_end(end),
+		m_cur(start)
+	{
 
-bool MemoryReader::operator!=(const MemoryReader& other) const
-{
-	return !(*this == other);
-}
+	}
 
-bool MemoryReader::readMemory(void* buf, size_t size)
-{
-	if (m_cur + size <= m_end)
+	MemoryReader::MemoryReader(char* start, size_t length)
+		: MemoryReader(start, start + length)
 	{
-		memcpy(buf, m_cur, size);
-		m_cur += size;
-		return true;
-	}
-	else
-	{
-		m_cur = m_end;
-		return false;
-	}
-}
 
-bool MemoryReader::readString(std::string& value)
-{
-	std::string_view temp;
-	if (readString(temp))
-	{
-		value = temp;
-		return true;
 	}
-	else
-	{
-		return false;
-	}
-}
 
-bool MemoryReader::readString(std::string& value, size_t size)
-{
-	std::string_view temp;
-	if (readString(temp, size))
+	MemoryReader MemoryReader::spanAll() const
 	{
-		value = temp;
-		return true;
+		return span(0, size());
 	}
-	else
+
+	MemoryReader MemoryReader::spanNext(size_t length) const
 	{
-		return false;
+		return span(pos(), length);
 	}
-}
 
-bool MemoryReader::readString(std::string_view& value)
-{
-	if (m_cur < m_end)
+	MemoryReader MemoryReader::span(size_t pos, size_t length) const
 	{
-		char* strStart = m_cur;
+		return MemoryReader(m_start + pos, length);
+	}
 
-		while (*m_cur && (m_cur < m_end))
+	bool MemoryReader::operator==(const MemoryReader& other) const
+	{
+		if (eof() && other.eof())
 		{
-			m_cur++;
+			return true;
 		}
 
-		value = std::string_view(strStart, m_cur - strStart);
-
-		m_cur++;
-
-		return true;
+		return (m_start == other.m_start) && (m_end == other.m_end) && (m_cur == other.m_cur);
 	}
-	else
+
+	bool MemoryReader::operator!=(const MemoryReader& other) const
 	{
-		return false;
+		return !(*this == other);
 	}
-}
 
-bool MemoryReader::readString(std::string_view& value, size_t size)
-{
-	if ((m_cur + size) < m_end)
+	bool MemoryReader::readMemory(void* buf, size_t size)
 	{
-		value = std::string_view(m_cur, size);
-		m_cur += size;
-
-		return true;
+		if (m_cur + size <= m_end)
+		{
+			memcpy(buf, m_cur, size);
+			m_cur += size;
+			return true;
+		}
+		else
+		{
+			m_cur = m_end;
+			return false;
+		}
 	}
-	else
+
+	bool MemoryReader::readString(std::string& value)
 	{
-		return false;
+		std::string_view temp;
+		if (readString(temp))
+		{
+			value = temp;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-}
 
-size_t MemoryReader::pos() const
-{
-	return (size_t)(m_cur - m_start);
-}
-
-size_t MemoryReader::size() const
-{
-	return (size_t)(m_end - m_start);
-}
-
-bool MemoryReader::eof() const
-{
-	return m_cur >= m_end;
-}
-
-void MemoryReader::seek(ptrdiff_t offset)
-{
-	if (((m_cur + offset) < m_end) && ((m_cur + offset) >= m_start))
+	bool MemoryReader::readString(std::string& value, size_t size)
 	{
-		m_cur += offset;
+		std::string_view temp;
+		if (readString(temp, size))
+		{
+			value = temp;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-}
 
-void MemoryReader::setPos(size_t pos)
-{
-	if ((m_start + pos) < m_end)
+	bool MemoryReader::readString(std::string_view& value)
 	{
-		m_cur = m_start + pos;
+		if (m_cur < m_end)
+		{
+			char* strStart = m_cur;
+
+			while (*m_cur && (m_cur < m_end))
+			{
+				m_cur++;
+			}
+
+			value = std::string_view(strStart, m_cur - strStart);
+
+			m_cur++;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
+
+	bool MemoryReader::readString(std::string_view& value, size_t size)
+	{
+		if ((m_cur + size) < m_end)
+		{
+			value = std::string_view(m_cur, size);
+			m_cur += size;
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	size_t MemoryReader::pos() const
+	{
+		return (size_t)(m_cur - m_start);
+	}
+
+	size_t MemoryReader::size() const
+	{
+		return (size_t)(m_end - m_start);
+	}
+
+	bool MemoryReader::eof() const
+	{
+		return m_cur >= m_end;
+	}
+
+	void MemoryReader::seek(ptrdiff_t offset)
+	{
+		if (((m_cur + offset) < m_end) && ((m_cur + offset) >= m_start))
+		{
+			m_cur += offset;
+		}
+	}
+
+	void MemoryReader::setPos(size_t pos)
+	{
+		if ((m_start + pos) < m_end)
+		{
+			m_cur = m_start + pos;
+		}
+	}
+
 }

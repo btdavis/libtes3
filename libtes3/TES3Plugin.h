@@ -6,23 +6,28 @@
 #include "TES3RecordRange.h"
 #include "TES3TypedRecordRange.h"
 
-class TES3Plugin
+namespace libtes3
 {
-public:
-	TES3Plugin(const char* filename);
-	MemoryReader data();
 
-	TES3RecordRange records() const;
-
-	template<typename T>
-	TES3TypedRecordRange<T> records() const
+	class TES3Plugin
 	{
-		return TES3TypedRecordRange<T>(records());
-	}
+	public:
+		TES3Plugin(const char* filename);
+		MemoryReader data();
 
-private:
-	MemoryReader m_reader;
-	std::vector<char> m_data;
-};
+		TES3RecordRange records() const;
+
+		template<typename T>
+		TES3TypedRecordRange<T> records() const
+		{
+			return TES3TypedRecordRange<T>(records());
+		}
+
+	private:
+		MemoryReader m_reader;
+		std::vector<char> m_data;
+	};
+
+}
 
 #endif

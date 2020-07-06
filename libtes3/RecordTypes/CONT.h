@@ -5,21 +5,26 @@
 
 #include "../TES3Record.h"
 
-class CONT
+namespace libtes3
 {
-public:
-	static constexpr TES3RecordType Type = MakeRecordType('CONT');
 
-	CONT(const TES3Record& from);
+	class CONT
+	{
+	public:
+		static constexpr TES3RecordType Type = MakeRecordType('CONT');
 
-	std::string name() const;
-	std::string model() const;
-	std::string friendlyName() const;
+		CONT(const TES3Record& from);
 
-private:
-	std::string m_name;
-	std::string m_model;
-	std::string m_friendlyName;
-};
+		std::string name() const;
+		std::string model() const;
+		std::string friendlyName() const;
+
+	private:
+		std::string m_name;
+		std::string m_model;
+		std::string m_friendlyName;
+	};
+
+}
 
 #endif

@@ -5,19 +5,24 @@
 
 #include "../TES3Record.h"
 
-class GMST
+namespace libtes3
 {
-public:
-	static constexpr TES3RecordType Type = MakeRecordType('GMST');
 
-	GMST(const TES3Record& from);
+	class GMST
+	{
+	public:
+		static constexpr TES3RecordType Type = MakeRecordType('GMST');
 
-	std::string name() const;
-	std::string value() const;
+		GMST(const TES3Record& from);
 
-private:
-	std::string m_name;
-	std::string m_value;
-};
+		std::string name() const;
+		std::string value() const;
+
+	private:
+		std::string m_name;
+		std::string m_value;
+	};
+
+}
 
 #endif

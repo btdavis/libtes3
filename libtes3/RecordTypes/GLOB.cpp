@@ -1,54 +1,59 @@
 #include "GLOB.h"
 
-GLOB::GLOB(const TES3Record& from)
+namespace libtes3
 {
-	for (const auto& subrecord : from)
+
+	GLOB::GLOB(const TES3Record& from)
 	{
-		auto reader = subrecord.data();
-
-		if (subrecord.type() == MakeRecordType('NAME'))
+		for (const auto& subrecord : from)
 		{
-			reader.readString(m_name);
-		}
-		else if (subrecord.type() == MakeRecordType('FNAM'))
-		{
-			char value;
-			reader.read(value);
+			auto reader = subrecord.data();
 
-			switch (value)
+			if (subrecord.type() == MakeRecordType('NAME'))
 			{
-			case 's':
-				m_valueType = ValueType::Short;
-				break;
-			case 'l':
-				m_valueType = ValueType::Long;
-				break;
-			case 'f':
-				m_valueType = ValueType::Float;
-				break;
-			default:
-				m_valueType = ValueType::Unknown;
-				break;
+				reader.readString(m_name);
+			}
+			else if (subrecord.type() == MakeRecordType('FNAM'))
+			{
+				char value;
+				reader.read(value);
+
+				switch (value)
+				{
+				case 's':
+					m_valueType = ValueType::Short;
+					break;
+				case 'l':
+					m_valueType = ValueType::Long;
+					break;
+				case 'f':
+					m_valueType = ValueType::Float;
+					break;
+				default:
+					m_valueType = ValueType::Unknown;
+					break;
+				}
+			}
+			else if (subrecord.type() == MakeRecordType('FLTV'))
+			{
+				reader.read(m_value);
 			}
 		}
-		else if (subrecord.type() == MakeRecordType('FLTV'))
-		{
-			reader.read(m_value);
-		}
 	}
-}
 
-std::string GLOB::name() const
-{
-	return m_name;
-}
+	std::string GLOB::name() const
+	{
+		return m_name;
+	}
 
-GLOB::ValueType GLOB::valueType() const
-{
-	return m_valueType;
-}
+	GLOB::ValueType GLOB::valueType() const
+	{
+		return m_valueType;
+	}
 
-float GLOB::value() const
-{
-	return m_value;
+	float GLOB::value() const
+	{
+		return m_value;
+	}
+
 }

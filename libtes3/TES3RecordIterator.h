@@ -4,27 +4,32 @@
 #include "TES3Record.h"
 #include <optional>
 
-class TES3RecordIterator
+namespace libtes3
 {
-public:
-	TES3RecordIterator();
-	TES3RecordIterator(const MemoryReader& reader);
 
-	bool isValid() const;
+	class TES3RecordIterator
+	{
+	public:
+		TES3RecordIterator();
+		TES3RecordIterator(const MemoryReader& reader);
 
-	bool operator==(const TES3RecordIterator& other) const;
-	bool operator!=(const TES3RecordIterator& other) const;
+		bool isValid() const;
 
-	TES3RecordIterator& operator++();
+		bool operator==(const TES3RecordIterator& other) const;
+		bool operator!=(const TES3RecordIterator& other) const;
 
-	TES3Record& operator*();
-	const TES3Record& operator*() const;
-	TES3Record* operator->();
-	const TES3Record* operator->() const;
+		TES3RecordIterator& operator++();
 
-private:
-	MemoryReader m_reader;
-	std::optional<TES3Record> m_currentRecord;
-};
+		TES3Record& operator*();
+		const TES3Record& operator*() const;
+		TES3Record* operator->();
+		const TES3Record* operator->() const;
+
+	private:
+		MemoryReader m_reader;
+		std::optional<TES3Record> m_currentRecord;
+	};
+
+}
 
 #endif

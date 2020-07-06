@@ -5,21 +5,26 @@
 
 #include "../TES3Record.h"
 
-class LTEX
+namespace libtes3
 {
-public:
-	static constexpr TES3RecordType Type = MakeRecordType('LTEX');
 
-	LTEX(const TES3Record& from);
+	class LTEX
+	{
+	public:
+		static constexpr TES3RecordType Type = MakeRecordType('LTEX');
 
-	std::string name() const;
-	int32_t index() const;
-	std::string texture() const;
+		LTEX(const TES3Record& from);
 
-private:
-	std::string m_name;
-	int32_t m_index = 0;
-	std::string m_texture;
-};
+		std::string name() const;
+		int32_t index() const;
+		std::string texture() const;
+
+	private:
+		std::string m_name;
+		int32_t m_index = 0;
+		std::string m_texture;
+	};
+
+}
 
 #endif
