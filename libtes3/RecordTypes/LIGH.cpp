@@ -28,22 +28,22 @@ namespace libtes3
 		}
 	}
 
-	std::string LIGH::name() const
+	std::string_view LIGH::name() const
 	{
 		return m_name;
 	}
 
-	std::string LIGH::model() const
+	std::string_view LIGH::model() const
 	{
 		return m_model;
 	}
 
-	std::string LIGH::friendlyName() const
+	std::string_view LIGH::friendlyName() const
 	{
 		return m_friendlyName;
 	}
 
-	std::string LIGH::scriptName() const
+	std::string_view LIGH::scriptName() const
 	{
 		return m_scriptName;
 	}

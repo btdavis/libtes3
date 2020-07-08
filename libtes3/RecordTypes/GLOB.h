@@ -23,12 +23,12 @@ namespace libtes3
 			Float
 		};
 
-		std::string name() const;
+		std::string_view name() const;
 		ValueType valueType() const;
 		float value() const;
 
 	private:
-		std::string m_name;
+		std::string_view m_name;
 		ValueType m_valueType = ValueType::Unknown;
 		float m_value = 0.0f;
 	};

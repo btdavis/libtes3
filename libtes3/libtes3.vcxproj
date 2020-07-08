@@ -162,6 +162,8 @@
     <ClInclude Include="libtes3.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RecordTypes\ACTI.h" />
+    <ClInclude Include="RecordTypes\CELL.h" />
+    <ClInclude Include="RecordTypes\CELLRef.h" />
     <ClInclude Include="RecordTypes\CONT.h" />
     <ClInclude Include="RecordTypes\DOOR.h" />
     <ClInclude Include="RecordTypes\GLOB.h" />
@@ -191,6 +193,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RecordTypes\ACTI.cpp" />
+    <ClCompile Include="RecordTypes\CELL.cpp" />
+    <ClCompile Include="RecordTypes\CELLRef.cpp" />
     <ClCompile Include="RecordTypes\CONT.cpp" />
     <ClCompile Include="RecordTypes\DOOR.cpp" />
     <ClCompile Include="RecordTypes\GLOB.cpp" />

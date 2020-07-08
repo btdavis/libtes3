@@ -28,22 +28,22 @@ namespace libtes3
 		}
 	}
 
-	std::string ACTI::name() const
+	std::string_view ACTI::name() const
 	{
 		return m_name;
 	}
 
-	std::string ACTI::model() const
+	std::string_view ACTI::model() const
 	{
 		return m_model;
 	}
 
-	std::string ACTI::friendlyName() const
+	std::string_view ACTI::friendlyName() const
 	{
 		return m_friendlyName;
 	}
 
-	std::string ACTI::scriptName() const
+	std::string_view ACTI::scriptName() const
 	{
 		return m_scriptName;
 	}

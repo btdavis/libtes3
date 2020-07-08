@@ -15,12 +15,12 @@ namespace libtes3
 
 		GMST(const TES3Record& from);
 
-		std::string name() const;
-		std::string value() const;
+		std::string_view name() const;
+		std::string_view value() const;
 
 	private:
-		std::string m_name;
-		std::string m_value;
+		std::string_view m_name;
+		std::string_view m_value;
 	};
 
 }

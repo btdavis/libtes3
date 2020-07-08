@@ -43,6 +43,12 @@
     <ClInclude Include="RecordTypes\LIGH.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
+    <ClInclude Include="RecordTypes\CELL.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\CELLRef.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -81,6 +87,12 @@
       <Filter>RecordTypes</Filter>
     </ClCompile>
     <ClCompile Include="RecordTypes\LIGH.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\CELL.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\CELLRef.cpp">
       <Filter>RecordTypes</Filter>
     </ClCompile>
   </ItemGroup>

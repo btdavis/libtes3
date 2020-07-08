@@ -15,14 +15,14 @@ namespace libtes3
 
 		LTEX(const TES3Record& from);
 
-		std::string name() const;
+		std::string_view name() const;
 		int32_t index() const;
-		std::string texture() const;
+		std::string_view texture() const;
 
 	private:
-		std::string m_name;
+		std::string_view m_name;
 		int32_t m_index = 0;
-		std::string m_texture;
+		std::string_view m_texture;
 	};
 
 }

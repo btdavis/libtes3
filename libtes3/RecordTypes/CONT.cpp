@@ -24,17 +24,17 @@ namespace libtes3
 		}
 	}
 
-	std::string CONT::name() const
+	std::string_view CONT::name() const
 	{
 		return m_name;
 	}
 
-	std::string CONT::model() const
+	std::string_view CONT::model() const
 	{
 		return m_model;
 	}
 
-	std::string CONT::friendlyName() const
+	std::string_view CONT::friendlyName() const
 	{
 		return m_friendlyName;
 	}

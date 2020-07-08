@@ -7,6 +7,7 @@
 #include "TES3RecordType.h"
 
 #include "RecordTypes/ACTI.h"
+#include "RecordTypes/CELL.h"
 #include "RecordTypes/CONT.h"
 #include "RecordTypes/DOOR.h"
 #include "RecordTypes/GLOB.h"

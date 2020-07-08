@@ -3,6 +3,7 @@
 #include "libtes3.h"
 
 using namespace libtes3;
+using namespace std::string_view_literals;
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -33,7 +34,7 @@ public:
 			if (gmst.name() == "sOK")
 			{
 				foundRecord = true;
-				Assert::AreEqual("OK", gmst.value().c_str());
+				Assert::AreEqual("OK"sv, gmst.value());
 			}
 		}
 
@@ -65,7 +66,7 @@ public:
 			if (ltex.name() == "Sand")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Tx_sand_01.tga", ltex.texture().c_str());
+				Assert::AreEqual("Tx_sand_01.tga"sv, ltex.texture());
 			}
 		}
 
@@ -97,7 +98,7 @@ public:
 			if (stat.name() == "DoorMarker")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Marker_Arrow.nif", stat.model().c_str());
+				Assert::AreEqual("Marker_Arrow.nif"sv, stat.model());
 			}
 		}
 
@@ -113,7 +114,7 @@ public:
 			if (scpt.name() == "ajiraReports")
 			{
 				foundRecord = true;
-				Assert::IsTrue(scpt.script().find("Begin ajiraReports") != std::string::npos);
+				Assert::IsTrue(scpt.script().find("Begin ajiraReports") != std::string_view::npos);
 			}
 		}
 
@@ -129,7 +130,7 @@ public:
 			if (acti.name() == "furn_sign_inn_01")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Imperial Tavern", acti.friendlyName().c_str());
+				Assert::AreEqual("Imperial Tavern"sv, acti.friendlyName());
 			}
 		}
 
@@ -142,11 +143,10 @@ public:
 
 		for (const auto& cont : g_plugin->records<CONT>())
 		{
-			Logger::WriteMessage((cont.name() + " " + cont.friendlyName() + "\n").c_str());
 			if (cont.name() == "crate_01")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Crate", cont.friendlyName().c_str());
+				Assert::AreEqual("Crate"sv, cont.friendlyName());
 			}
 		}
 
@@ -159,11 +159,10 @@ public:
 
 		for (const auto& door : g_plugin->records<DOOR>())
 		{
-			Logger::WriteMessage((door.name() + " " + door.friendlyName() + "\n").c_str());
 			if (door.name() == "in_c_door_arched")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Sturdy Arched Door", door.friendlyName().c_str());
+				Assert::AreEqual("Sturdy Arched Door"sv, door.friendlyName());
 			}
 		}
 
@@ -176,11 +175,26 @@ public:
 
 		for (const auto& ligh : g_plugin->records<LIGH>())
 		{
-			Logger::WriteMessage((ligh.name() + " " + ligh.friendlyName() + "\n").c_str());
 			if (ligh.name() == "light_com_candle_03")
 			{
 				foundRecord = true;
-				Assert::AreEqual("Silver Candlestick", ligh.friendlyName().c_str());
+				Assert::AreEqual("Silver Candlestick"sv, ligh.friendlyName());
+			}
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
+	TEST_METHOD(ReadCELL)
+	{
+		bool foundRecord = false;
+
+		for (const auto& cell : g_plugin->records<CELL>())
+		{
+			if (cell.name() == "Addamasartus")
+			{
+				foundRecord = true;
+				Assert::AreEqual(size_t(285), cell.references().size());
 			}
 		}
 

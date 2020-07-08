@@ -15,14 +15,14 @@ namespace libtes3
 
 		SCPT(const TES3Record& from);
 
-		std::string name() const;
-		std::vector<std::string> locals() const;
-		std::string script() const;
+		std::string_view name() const;
+		std::vector<std::string_view> locals() const;
+		std::string_view script() const;
 
 	private:
-		std::string m_name;
-		std::vector<std::string> m_locals;
-		std::string m_script;
+		std::string_view m_name;
+		std::vector<std::string_view> m_locals;
+		std::string_view m_script;
 	};
 
 }

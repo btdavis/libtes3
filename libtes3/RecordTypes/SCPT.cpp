@@ -11,15 +11,13 @@ namespace libtes3
 
 			if (subrecord.type() == MakeRecordType('SCHD'))
 			{
-				char name[33] = {};
-				reader.read(name, 32);
-				m_name = name;
+				reader.readString(m_name);
 			}
 			else if (subrecord.type() == MakeRecordType('SCVR'))
 			{
 				while (!reader.eof())
 				{
-					std::string local;
+					std::string_view local;
 					reader.readString(local);
 					m_locals.push_back(local);
 				}
@@ -31,17 +29,17 @@ namespace libtes3
 		}
 	}
 
-	std::string SCPT::name() const
+	std::string_view SCPT::name() const
 	{
 		return m_name;
 	}
 
-	std::vector<std::string> SCPT::locals() const
+	std::vector<std::string_view> SCPT::locals() const
 	{
 		return m_locals;
 	}
 
-	std::string SCPT::script() const
+	std::string_view SCPT::script() const
 	{
 		return m_script;
 	}

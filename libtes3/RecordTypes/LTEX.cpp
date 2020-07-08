@@ -24,7 +24,7 @@ namespace libtes3
 		}
 	}
 
-	std::string LTEX::name() const
+	std::string_view LTEX::name() const
 	{
 		return m_name;
 	}
@@ -34,7 +34,7 @@ namespace libtes3
 		return m_index;
 	}
 
-	std::string LTEX::texture() const
+	std::string_view LTEX::texture() const
 	{
 		return m_texture;
 	}

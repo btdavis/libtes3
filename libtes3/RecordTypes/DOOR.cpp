@@ -28,22 +28,22 @@ namespace libtes3
 		}
 	}
 
-	std::string DOOR::name() const
+	std::string_view DOOR::name() const
 	{
 		return m_name;
 	}
 
-	std::string DOOR::model() const
+	std::string_view DOOR::model() const
 	{
 		return m_model;
 	}
 
-	std::string DOOR::friendlyName() const
+	std::string_view DOOR::friendlyName() const
 	{
 		return m_friendlyName;
 	}
 
-	std::string DOOR::scriptName() const
+	std::string_view DOOR::scriptName() const
 	{
 		return m_scriptName;
 	}

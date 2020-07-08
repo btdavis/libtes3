@@ -32,12 +32,12 @@ namespace libtes3
 		}
 	}
 
-	std::string GMST::name() const
+	std::string_view GMST::name() const
 	{
 		return m_name;
 	}
 
-	std::string GMST::value() const
+	std::string_view GMST::value() const
 	{
 		return m_value;
 	}

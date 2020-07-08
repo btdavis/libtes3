@@ -41,7 +41,7 @@ namespace libtes3
 		}
 	}
 
-	std::string GLOB::name() const
+	std::string_view GLOB::name() const
 	{
 		return m_name;
 	}

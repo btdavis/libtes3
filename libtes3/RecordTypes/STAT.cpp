@@ -20,12 +20,12 @@ namespace libtes3
 		}
 	}
 
-	std::string STAT::name() const
+	std::string_view STAT::name() const
 	{
 		return m_name;
 	}
 
-	std::string STAT::model() const
+	std::string_view STAT::model() const
 	{
 		return m_model;
 	}

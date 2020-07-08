@@ -15,16 +15,16 @@ namespace libtes3
 
 		DOOR(const TES3Record& from);
 
-		std::string name() const;
-		std::string model() const;
-		std::string friendlyName() const;
-		std::string scriptName() const;
+		std::string_view name() const;
+		std::string_view model() const;
+		std::string_view friendlyName() const;
+		std::string_view scriptName() const;
 
 	private:
-		std::string m_name;
-		std::string m_model;
-		std::string m_friendlyName;
-		std::string m_scriptName;
+		std::string_view m_name;
+		std::string_view m_model;
+		std::string_view m_friendlyName;
+		std::string_view m_scriptName;
 	};
 
 }
