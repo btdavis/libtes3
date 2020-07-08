@@ -2,6 +2,7 @@
 #define TES3READER_H
 
 #include <string_view>
+#include "span.h"
 
 namespace libtes3
 {
@@ -30,6 +31,22 @@ namespace libtes3
 		bool read(T* buf, size_t length)
 		{
 			return readMemory((void*)buf, sizeof(T) * length);
+		}
+
+		template<typename T>
+		bool read(nonstd::span<T>& value, size_t length)
+		{
+			if ((m_cur + length) < m_end)
+			{
+				value = nonstd::span((T*)m_cur, length);
+				m_cur += value.size_bytes();
+
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		bool readMemory(void* buf, size_t size);

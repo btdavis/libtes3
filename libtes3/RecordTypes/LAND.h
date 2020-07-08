@@ -2,6 +2,7 @@
 #define LAND_H
 
 #include <string>
+#include "../span.h"
 
 #include "../TES3Record.h"
 
@@ -45,10 +46,10 @@ namespace libtes3
 		int32_t m_cellY = 0;
 
 		float m_heightOffset = 0.0f;
-		std::vector<int8_t> m_heightDeltas;
-		std::vector<Normal> m_normals;
-		std::vector<Color> m_colors;
-		std::vector<uint16_t> m_textureIndexes;
+		nonstd::span<int8_t> m_heightDeltas;
+		nonstd::span<Normal> m_normals;
+		nonstd::span<Color> m_colors;
+		nonstd::span<uint16_t> m_textureIndexes;
 	};
 
 }

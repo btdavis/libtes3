@@ -49,6 +49,7 @@
     <ClInclude Include="RecordTypes\CELLRef.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
+    <ClInclude Include="span.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />

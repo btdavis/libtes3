@@ -16,27 +16,21 @@ namespace libtes3
 			}
 			else if (subrecord.type() == MakeRecordType('VNML'))
 			{
-				m_normals.resize(65 * 65);
-				reader.read(m_normals.data(), m_normals.size());
+				reader.read(m_normals, 65 * 65);
 			}
 			else if (subrecord.type() == MakeRecordType('VHGT'))
 			{
 				reader.read(m_heightOffset);
-
 				reader.seek(1); // unknown byte
-
-				m_heightDeltas.resize(65 * 65);
-				reader.read(m_heightDeltas.data(), m_heightDeltas.size());
+				reader.read(m_heightDeltas, 65 * 65);
 			}
 			else if (subrecord.type() == MakeRecordType('VCLR'))
 			{
-				m_colors.resize(65 * 65);
-				reader.read(m_colors.data(), m_colors.size());
+				reader.read(m_colors, 65 * 65);
 			}
 			else if (subrecord.type() == MakeRecordType('VTEX'))
 			{
-				m_textureIndexes.resize(16 * 16);
-				reader.read(m_textureIndexes.data(), m_textureIndexes.size());
+				reader.read(m_textureIndexes, 16 * 16);
 			}
 		}
 	}
@@ -60,7 +54,7 @@ namespace libtes3
 	{
 		size_t index = y * 65 + x;
 
-		if (m_heightDeltas.size() > index)
+		if (m_heightDeltas.empty())
 		{
 			return m_heightDeltas[index];
 		}
@@ -74,7 +68,7 @@ namespace libtes3
 	{
 		size_t index = y * 65 + x;
 
-		if (m_normals.size() > index)
+		if (m_normals.empty())
 		{
 			return m_normals[index];
 		}
@@ -88,7 +82,7 @@ namespace libtes3
 	{
 		size_t index = y * 65 + x;
 
-		if (m_colors.size() > index)
+		if (m_colors.empty())
 		{
 			return m_colors[index];
 		}
@@ -102,7 +96,7 @@ namespace libtes3
 	{
 		size_t index = y * 16 + x;
 
-		if (m_textureIndexes.size() > index)
+		if (m_textureIndexes.empty())
 		{
 			return m_textureIndexes[index];
 		}
