@@ -17,5 +17,6 @@
 #include "RecordTypes/LTEX.h"
 #include "RecordTypes/SCPT.h"
 #include "RecordTypes/STAT.h"
+#include "RecordTypes/TES3.h"
 
 #endif

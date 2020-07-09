@@ -21,6 +21,21 @@ namespace libtes3
 			{
 				reader.readString(m_friendlyName);
 			}
+			else if (subrecord.type() == MakeRecordType('CNDT'))
+			{
+				reader.read(m_weight);
+			}
+			else if (subrecord.type() == MakeRecordType('FLAG'))
+			{
+				reader.read(m_flags);
+			}
+			else if (subrecord.type() == MakeRecordType('NPCO'))
+			{
+				Item item;
+				reader.read(item.m_count);
+				reader.readString(item.m_id);
+				m_items.push_back(item);
+			}
 		}
 	}
 
@@ -37,6 +52,21 @@ namespace libtes3
 	std::string_view CONT::friendlyName() const
 	{
 		return m_friendlyName;
+	}
+
+	float CONT::weight() const
+	{
+		return m_weight;
+	}
+
+	uint32_t CONT::flags() const
+	{
+		return m_flags;
+	}
+
+	const std::vector<CONT::Item>& CONT::items() const
+	{
+		return m_items;
 	}
 
 }

@@ -50,6 +50,9 @@
       <Filter>RecordTypes</Filter>
     </ClInclude>
     <ClInclude Include="span.h" />
+    <ClInclude Include="RecordTypes\TES3.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -94,6 +97,9 @@
       <Filter>RecordTypes</Filter>
     </ClCompile>
     <ClCompile Include="RecordTypes\CELLRef.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\TES3.cpp">
       <Filter>RecordTypes</Filter>
     </ClCompile>
   </ItemGroup>

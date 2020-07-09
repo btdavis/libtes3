@@ -25,6 +25,14 @@ namespace libtes3
 			{
 				reader.readString(m_scriptName);
 			}
+			else if (subrecord.type() == MakeRecordType('SNAM'))
+			{
+				reader.readString(m_soundOpen);
+			}
+			else if (subrecord.type() == MakeRecordType('ANAM'))
+			{
+				reader.readString(m_soundClose);
+			}
 		}
 	}
 
@@ -46,6 +54,16 @@ namespace libtes3
 	std::string_view DOOR::scriptName() const
 	{
 		return m_scriptName;
+	}
+
+	std::string_view DOOR::soundOpen() const
+	{
+		return m_soundOpen;
+	}
+
+	std::string_view DOOR::soundClose() const
+	{
+		return m_soundClose;
 	}
 
 }

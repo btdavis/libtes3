@@ -25,6 +25,19 @@ TEST_CLASS(RecordTypes)
 	}
 
 public:
+	TEST_METHOD(ReadTES3)
+	{
+		bool foundRecord = false;
+
+		for (const auto& tes3 : g_plugin->records<TES3>())
+		{
+			foundRecord = true;
+			Assert::AreEqual(1.2f, tes3.version());
+		}
+
+		Assert::IsTrue(foundRecord);
+	}
+
 	TEST_METHOD(ReadGMST)
 	{
 		bool foundRecord = false;

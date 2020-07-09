@@ -11,7 +11,9 @@ namespace libtes3
 
 			if (subrecord.type() == MakeRecordType('SCHD'))
 			{
-				reader.readString(m_name);
+				reader.readString(m_name, 32);
+
+				m_name = m_name.substr(0, strnlen(m_name.data(), m_name.size())); // trim to null terminator
 			}
 			else if (subrecord.type() == MakeRecordType('SCVR'))
 			{
