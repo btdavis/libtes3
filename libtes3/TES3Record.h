@@ -3,33 +3,34 @@
 
 #include "TES3RecordType.h"
 #include "TES3SubrecordIterator.h"
-#include "MemoryReader.h"
+#include "TES3PluginReader.h"
 
 #include <vector>
 #include <optional>
 
 namespace libtes3
 {
+	class TES3Plugin;
 
 	class TES3Record
 	{
 	public:
-		TES3Record(MemoryReader& reader);
+		TES3Record(TES3PluginReader& reader);
 
-		MemoryReader data() const;
+		virtual std::string id() const;
+
+		TES3Plugin *plugin() const;
+		TES3PluginReader recordData() const;
 
 		TES3SubrecordIterator begin() const;
 		TES3SubrecordIterator end() const;
 
-		TES3RecordType type() const;
-		uint32_t header() const;
-		uint32_t flags() const;
-
-		std::optional<TES3Subrecord> firstSubrecord(TES3RecordType type) const;
-		std::vector<TES3Subrecord> allSubrecords(TES3RecordType type) const;
+		TES3RecordType recordType() const;
+		uint32_t recordHeader() const;
+		uint32_t recordFlags() const;
 
 	protected:
-		MemoryReader m_reader;
+		TES3PluginReader m_reader;
 		TES3RecordType m_type = 0;
 		uint32_t m_header = 0;
 		uint32_t m_flags = 0;

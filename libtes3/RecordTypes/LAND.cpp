@@ -4,35 +4,41 @@ namespace libtes3
 {
 
 	LAND::LAND(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('INTV'))
+			if (subrecord.subrecordType() == MakeRecordType('INTV'))
 			{
 				reader.read(m_cellX);
 				reader.read(m_cellY);
 			}
-			else if (subrecord.type() == MakeRecordType('VNML'))
+			else if (subrecord.subrecordType() == MakeRecordType('VNML'))
 			{
 				reader.read(m_normals, 65 * 65);
 			}
-			else if (subrecord.type() == MakeRecordType('VHGT'))
+			else if (subrecord.subrecordType() == MakeRecordType('VHGT'))
 			{
 				reader.read(m_heightOffset);
 				reader.seek(1); // unknown byte
 				reader.read(m_heightDeltas, 65 * 65);
 			}
-			else if (subrecord.type() == MakeRecordType('VCLR'))
+			else if (subrecord.subrecordType() == MakeRecordType('VCLR'))
 			{
 				reader.read(m_colors, 65 * 65);
 			}
-			else if (subrecord.type() == MakeRecordType('VTEX'))
+			else if (subrecord.subrecordType() == MakeRecordType('VTEX'))
 			{
 				reader.read(m_textureIndexes, 16 * 16);
 			}
 		}
+	}
+
+	std::string LAND::id() const
+	{
+		return std::to_string(cellX()) + "," + std::to_string(cellY());
 	}
 
 	int32_t LAND::cellX() const

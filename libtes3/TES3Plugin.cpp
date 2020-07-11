@@ -1,5 +1,5 @@
 #include "TES3Plugin.h"
-#include "MemoryReader.h"
+#include "TES3PluginReader.h"
 
 #include <fstream>
 
@@ -15,17 +15,31 @@ namespace libtes3
 		in.read(m_data.data(), m_data.size());
 		in.close();
 
-		m_reader = MemoryReader(m_data.data(), m_data.size());
+		m_reader = TES3PluginReader(this, m_data.data(), m_data.size());
+
+		char drive[_MAX_PATH] = {};
+		char dir[_MAX_PATH] = {};
+		char fname[_MAX_PATH] = {};
+		char ext[_MAX_PATH] = {};
+		_splitpath_s(filename, drive, dir, fname, ext);
+
+		m_filename = fname;
+		m_filename += ext;
 	}
 
-	MemoryReader TES3Plugin::data()
+	std::string TES3Plugin::filename() const
 	{
-		return m_reader;
+		return m_filename;
+	}
+
+	TES3PluginReader TES3Plugin::data() const
+	{
+		return m_reader.spanAll();
 	}
 
 	TES3RecordRange TES3Plugin::records() const
 	{
-		return TES3RecordRange(TES3RecordIterator(m_reader.spanAll()), TES3RecordIterator());
+		return TES3RecordRange(TES3RecordIterator(data()), TES3RecordIterator());
 	}
 
 }

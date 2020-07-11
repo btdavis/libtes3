@@ -1,44 +1,51 @@
-#include "MemoryReader.h"
+#include "TES3PluginReader.h"
+#include "TES3Plugin.h"
 
 namespace libtes3
 {
 
-	MemoryReader::MemoryReader()
-		: MemoryReader(nullptr, nullptr)
+	TES3PluginReader::TES3PluginReader()
+		: TES3PluginReader(nullptr, nullptr, nullptr)
 	{
 
 	}
 
-	MemoryReader::MemoryReader(char* start, char* end)
-		: m_start(start),
+	TES3PluginReader::TES3PluginReader(TES3Plugin* plugin, char* start, char* end)
+		: m_plugin(plugin),
+		m_start(start),
 		m_end(end),
 		m_cur(start)
 	{
 
 	}
 
-	MemoryReader::MemoryReader(char* start, size_t length)
-		: MemoryReader(start, start + length)
+	TES3PluginReader::TES3PluginReader(TES3Plugin* plugin, char* start, size_t length)
+		: TES3PluginReader(plugin, start, start + length)
 	{
 
 	}
 
-	MemoryReader MemoryReader::spanAll() const
+	TES3Plugin* TES3PluginReader::plugin() const
+	{
+		return m_plugin;
+	}
+
+	TES3PluginReader TES3PluginReader::spanAll() const
 	{
 		return span(0, size());
 	}
 
-	MemoryReader MemoryReader::spanNext(size_t length) const
+	TES3PluginReader TES3PluginReader::spanNext(size_t length) const
 	{
 		return span(pos(), length);
 	}
 
-	MemoryReader MemoryReader::span(size_t pos, size_t length) const
+	TES3PluginReader TES3PluginReader::span(size_t pos, size_t length) const
 	{
-		return MemoryReader(m_start + pos, length);
+		return TES3PluginReader(m_plugin, m_start + pos, length);
 	}
 
-	bool MemoryReader::operator==(const MemoryReader& other) const
+	bool TES3PluginReader::operator==(const TES3PluginReader& other) const
 	{
 		if (eof() && other.eof())
 		{
@@ -48,12 +55,12 @@ namespace libtes3
 		return (m_start == other.m_start) && (m_end == other.m_end) && (m_cur == other.m_cur);
 	}
 
-	bool MemoryReader::operator!=(const MemoryReader& other) const
+	bool TES3PluginReader::operator!=(const TES3PluginReader& other) const
 	{
 		return !(*this == other);
 	}
 
-	bool MemoryReader::readMemory(void* buf, size_t size)
+	bool TES3PluginReader::readMemory(void* buf, size_t size)
 	{
 		if (m_cur + size <= m_end)
 		{
@@ -68,7 +75,7 @@ namespace libtes3
 		}
 	}
 
-	bool MemoryReader::readString(std::string& value)
+	bool TES3PluginReader::readString(std::string& value)
 	{
 		std::string_view temp;
 		if (readString(temp))
@@ -82,7 +89,7 @@ namespace libtes3
 		}
 	}
 
-	bool MemoryReader::readString(std::string& value, size_t size)
+	bool TES3PluginReader::readString(std::string& value, size_t size)
 	{
 		std::string_view temp;
 		if (readString(temp, size))
@@ -96,7 +103,7 @@ namespace libtes3
 		}
 	}
 
-	bool MemoryReader::readString(std::string_view& value)
+	bool TES3PluginReader::readString(std::string_view& value)
 	{
 		if (m_cur < m_end)
 		{
@@ -119,7 +126,7 @@ namespace libtes3
 		}
 	}
 
-	bool MemoryReader::readString(std::string_view& value, size_t size)
+	bool TES3PluginReader::readString(std::string_view& value, size_t size)
 	{
 		if ((m_cur + size) < m_end)
 		{
@@ -134,22 +141,22 @@ namespace libtes3
 		}
 	}
 
-	size_t MemoryReader::pos() const
+	size_t TES3PluginReader::pos() const
 	{
 		return (size_t)(m_cur - m_start);
 	}
 
-	size_t MemoryReader::size() const
+	size_t TES3PluginReader::size() const
 	{
 		return (size_t)(m_end - m_start);
 	}
 
-	bool MemoryReader::eof() const
+	bool TES3PluginReader::eof() const
 	{
 		return m_cur >= m_end;
 	}
 
-	void MemoryReader::seek(ptrdiff_t offset)
+	void TES3PluginReader::seek(ptrdiff_t offset)
 	{
 		if (((m_cur + offset) < m_end) && ((m_cur + offset) >= m_start))
 		{
@@ -157,7 +164,7 @@ namespace libtes3
 		}
 	}
 
-	void MemoryReader::setPos(size_t pos)
+	void TES3PluginReader::setPos(size_t pos)
 	{
 		if ((m_start + pos) < m_end)
 		{

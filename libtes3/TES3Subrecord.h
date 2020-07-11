@@ -3,7 +3,7 @@
 
 #include <optional>
 #include "TES3RecordType.h"
-#include "MemoryReader.h"
+#include "TES3PluginReader.h"
 
 namespace libtes3
 {
@@ -11,14 +11,15 @@ namespace libtes3
 	class TES3Subrecord
 	{
 	public:
-		TES3Subrecord(MemoryReader& reader);
+		TES3Subrecord(TES3PluginReader& reader);
 
-		MemoryReader data() const;
+		TES3Plugin* plugin() const;
+		TES3PluginReader subrecordData() const;
 
-		TES3RecordType type() const;
+		TES3RecordType subrecordType() const;
 
 	private:
-		MemoryReader m_reader;
+		TES3PluginReader m_reader;
 		TES3RecordType m_type = 0;
 	};
 

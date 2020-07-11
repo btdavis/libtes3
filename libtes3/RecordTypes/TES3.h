@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class TES3
+	class TES3: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('TES3');
 
 		TES3(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		struct MasterPlugin
 		{

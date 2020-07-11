@@ -4,12 +4,13 @@ namespace libtes3
 {
 
 	TES3::TES3(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('HEDR'))
+			if (subrecord.subrecordType() == MakeRecordType('HEDR'))
 			{
 				reader.read(m_version);
 				int32_t unknown;
@@ -21,13 +22,13 @@ namespace libtes3
 				m_company = m_company.substr(0, strnlen(m_company.data(), m_company.size())); // trim to null terminator
 				m_description = m_description.substr(0, strnlen(m_description.data(), m_description.size())); // trim to null terminator
 			}
-			else if (subrecord.type() == MakeRecordType('MAST'))
+			else if (subrecord.subrecordType() == MakeRecordType('MAST'))
 			{
 				MasterPlugin toAdd;
 				reader.readString(toAdd.name);
 				m_masterPlugins.push_back(toAdd);
 			}
-			else if (subrecord.type() == MakeRecordType('DATA'))
+			else if (subrecord.subrecordType() == MakeRecordType('DATA'))
 			{
 				if (!m_masterPlugins.empty())
 				{
@@ -35,6 +36,11 @@ namespace libtes3
 				}
 			}
 		}
+	}
+
+	std::string TES3::id() const
+	{
+		return "";
 	}
 
 	float TES3::version() const

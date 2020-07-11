@@ -4,28 +4,29 @@ namespace libtes3
 {
 
 	LIGH::LIGH(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('NAME'))
+			if (subrecord.subrecordType() == MakeRecordType('NAME'))
 			{
 				reader.readString(m_name);
 			}
-			else if (subrecord.type() == MakeRecordType('MODL'))
+			else if (subrecord.subrecordType() == MakeRecordType('MODL'))
 			{
 				reader.readString(m_model);
 			}
-			else if (subrecord.type() == MakeRecordType('FNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('FNAM'))
 			{
 				reader.readString(m_friendlyName);
 			}
-			else if (subrecord.type() == MakeRecordType('SCPT'))
+			else if (subrecord.subrecordType() == MakeRecordType('SCPT'))
 			{
 				reader.readString(m_scriptName);
 			}
-			else if (subrecord.type() == MakeRecordType('LHDT'))
+			else if (subrecord.subrecordType() == MakeRecordType('LHDT'))
 			{
 				reader.read(m_weight);
 				reader.read(m_value);
@@ -34,15 +35,20 @@ namespace libtes3
 				reader.read(m_color);
 				reader.read(m_flags);
 			}
-			else if (subrecord.type() == MakeRecordType('ITEX'))
+			else if (subrecord.subrecordType() == MakeRecordType('ITEX'))
 			{
 				reader.readString(m_icon);
 			}
-			else if (subrecord.type() == MakeRecordType('SNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('SNAM'))
 			{
 				reader.readString(m_sound);
 			}
 		}
+	}
+
+	std::string LIGH::id() const
+	{
+		return std::string(name());
 	}
 
 	std::string_view LIGH::name() const

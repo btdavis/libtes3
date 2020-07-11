@@ -9,12 +9,14 @@
 namespace libtes3
 {
 
-	class LAND
+	class LAND: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('LAND');
 
 		LAND(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 #pragma pack(push)
 #pragma pack(1)

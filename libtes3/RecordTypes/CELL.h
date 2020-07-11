@@ -10,7 +10,7 @@
 namespace libtes3
 {
 
-	class CELL
+	class CELL: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('CELL');
@@ -33,6 +33,8 @@ namespace libtes3
 
 		CELL(const TES3Record& from);
 
+		virtual std::string id() const override;
+
 		std::string_view name() const;
 		std::string_view region() const;
 
@@ -50,6 +52,8 @@ namespace libtes3
 		const std::vector<CELLRef>& references() const;
 
 	private:
+		void readReferences() const;
+
 		std::string_view m_name;
 		std::string_view m_region;
 
@@ -64,7 +68,7 @@ namespace libtes3
 		Color m_fogColor;
 		float m_fogDensity = 0.0f;
 
-		std::vector<CELLRef> m_references;
+		mutable std::vector<CELLRef> m_references;
 	};
 
 }

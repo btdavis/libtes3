@@ -6,20 +6,23 @@
 
 namespace libtes3
 {
+	class TES3Plugin;
 
-	class MemoryReader
+	class TES3PluginReader
 	{
 	public:
-		MemoryReader();
-		MemoryReader(char* start, char* end);
-		MemoryReader(char* start, size_t length);
+		TES3PluginReader();
+		TES3PluginReader(TES3Plugin* plugin, char* start, char* end);
+		TES3PluginReader(TES3Plugin* plugin, char* start, size_t length);
 
-		MemoryReader spanAll() const; // equal to span(0, size())
-		MemoryReader spanNext(size_t length) const; // equal to span(pos(), length)
-		MemoryReader span(size_t pos, size_t length) const;
+		TES3Plugin* plugin() const;
 
-		bool operator==(const MemoryReader& other) const;
-		bool operator!=(const MemoryReader& other) const;
+		TES3PluginReader spanAll() const; // equal to span(0, size())
+		TES3PluginReader spanNext(size_t length) const; // equal to span(pos(), length)
+		TES3PluginReader span(size_t pos, size_t length) const;
+
+		bool operator==(const TES3PluginReader& other) const;
+		bool operator!=(const TES3PluginReader& other) const;
 
 		template<typename T>
 		bool read(T& value)
@@ -63,6 +66,7 @@ namespace libtes3
 		void setPos(size_t pos);
 
 	private:
+		TES3Plugin* m_plugin = nullptr;
 		char* m_start = nullptr;
 		char* m_end = nullptr;
 		char* m_cur = nullptr;

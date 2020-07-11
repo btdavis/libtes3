@@ -11,7 +11,7 @@ namespace libtes3
 	{
 	public:
 		TES3RecordIterator();
-		TES3RecordIterator(const MemoryReader& reader);
+		TES3RecordIterator(const TES3PluginReader& reader);
 
 		bool isValid() const;
 
@@ -26,7 +26,7 @@ namespace libtes3
 		const TES3Record* operator->() const;
 
 	private:
-		MemoryReader m_reader;
+		TES3PluginReader m_reader;
 		std::optional<TES3Record> m_currentRecord;
 	};
 

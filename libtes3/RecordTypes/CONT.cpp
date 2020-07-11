@@ -4,32 +4,33 @@ namespace libtes3
 {
 
 	CONT::CONT(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('NAME'))
+			if (subrecord.subrecordType() == MakeRecordType('NAME'))
 			{
 				reader.readString(m_name);
 			}
-			else if (subrecord.type() == MakeRecordType('MODL'))
+			else if (subrecord.subrecordType() == MakeRecordType('MODL'))
 			{
 				reader.readString(m_model);
 			}
-			else if (subrecord.type() == MakeRecordType('FNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('FNAM'))
 			{
 				reader.readString(m_friendlyName);
 			}
-			else if (subrecord.type() == MakeRecordType('CNDT'))
+			else if (subrecord.subrecordType() == MakeRecordType('CNDT'))
 			{
 				reader.read(m_weight);
 			}
-			else if (subrecord.type() == MakeRecordType('FLAG'))
+			else if (subrecord.subrecordType() == MakeRecordType('FLAG'))
 			{
 				reader.read(m_flags);
 			}
-			else if (subrecord.type() == MakeRecordType('NPCO'))
+			else if (subrecord.subrecordType() == MakeRecordType('NPCO'))
 			{
 				Item item;
 				reader.read(item.m_count);
@@ -37,6 +38,11 @@ namespace libtes3
 				m_items.push_back(item);
 			}
 		}
+	}
+
+	std::string CONT::id() const
+	{
+		return std::string(name());
 	}
 
 	std::string_view CONT::name() const

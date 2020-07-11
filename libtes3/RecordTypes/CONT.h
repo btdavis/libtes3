@@ -8,7 +8,7 @@
 namespace libtes3
 {
 
-	class CONT
+	class CONT: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('CONT');
@@ -24,6 +24,8 @@ namespace libtes3
 		};
 
 		CONT(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		std::string_view name() const;
 		std::string_view model() const;

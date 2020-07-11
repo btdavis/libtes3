@@ -8,7 +8,7 @@ namespace libtes3
 
 	}
 
-	TES3SubrecordIterator::TES3SubrecordIterator(const MemoryReader& reader)
+	TES3SubrecordIterator::TES3SubrecordIterator(const TES3PluginReader& reader)
 		: m_reader(reader)
 	{
 		if (!m_reader.eof())

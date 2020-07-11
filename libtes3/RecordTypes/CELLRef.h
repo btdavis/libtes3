@@ -2,6 +2,7 @@
 #define CELL_REF_H
 
 #include "../TES3Subrecord.h"
+#include "../TES3Record.h"
 
 #include <string>
 
@@ -11,6 +12,10 @@ namespace libtes3
 	class CELLRef
 	{
 	public:
+		CELLRef(TES3Plugin* plugin);
+
+		TES3Plugin* plugin() const;
+
 		void addSubrecord(const TES3Subrecord& subrecord);
 
 #pragma pack(push)
@@ -49,6 +54,8 @@ namespace libtes3
 		std::string_view soul() const;
 
 	private:
+		TES3Plugin* m_plugin = nullptr;
+
 		uint32_t m_refId = 0;
 		std::string_view m_name;
 		int32_t m_deleted = 0;

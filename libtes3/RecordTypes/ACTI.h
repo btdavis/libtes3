@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class ACTI
+	class ACTI: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('ACTI');
 
 		ACTI(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		std::string_view name() const;
 		std::string_view model() const;

@@ -3,7 +3,7 @@
 namespace libtes3
 {
 
-	TES3Subrecord::TES3Subrecord(MemoryReader& reader)
+	TES3Subrecord::TES3Subrecord(TES3PluginReader& reader)
 	{
 		uint32_t size;
 
@@ -14,12 +14,17 @@ namespace libtes3
 		reader.seek(size);
 	}
 
-	MemoryReader TES3Subrecord::data() const
+	TES3Plugin* TES3Subrecord::plugin() const
+	{
+		return m_reader.plugin();
+	}
+
+	TES3PluginReader TES3Subrecord::subrecordData() const
 	{
 		return m_reader.spanAll();
 	}
 
-	TES3RecordType TES3Subrecord::type() const
+	TES3RecordType TES3Subrecord::subrecordType() const
 	{
 		return m_type;
 	}

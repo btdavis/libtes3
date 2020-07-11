@@ -2,68 +2,77 @@
 
 namespace libtes3
 {
+	CELLRef::CELLRef(TES3Plugin* plugin)
+		: m_plugin(plugin)
+	{
+	}
+
+	TES3Plugin* CELLRef::plugin() const
+	{
+		return m_plugin;
+	}
 
 	void CELLRef::addSubrecord(const TES3Subrecord& subrecord)
 	{
-		auto reader = subrecord.data();
+		auto reader = subrecord.subrecordData();
 
-		if (subrecord.type() == MakeRecordType('FRMR'))
+		if (subrecord.subrecordType() == MakeRecordType('FRMR'))
 		{
 			reader.read(m_refId);
 		}
-		else if (subrecord.type() == MakeRecordType('NAME'))
+		else if (subrecord.subrecordType() == MakeRecordType('NAME'))
 		{
 			reader.readString(m_name);
 		}
-		else if (subrecord.type() == MakeRecordType('DELE'))
+		else if (subrecord.subrecordType() == MakeRecordType('DELE'))
 		{
 			reader.read(m_deleted);
 		}
-		else if (subrecord.type() == MakeRecordType('UNAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('UNAM'))
 		{
 			reader.read(m_blocked);
 		}
-		else if (subrecord.type() == MakeRecordType('DATA'))
+		else if (subrecord.subrecordType() == MakeRecordType('DATA'))
 		{
 			reader.read(m_transform);
 		}
-		else if (subrecord.type() == MakeRecordType('XSCL'))
+		else if (subrecord.subrecordType() == MakeRecordType('XSCL'))
 		{
 			reader.read(m_scale);
 		}
-		else if (subrecord.type() == MakeRecordType('DNAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('DNAM'))
 		{
 			reader.readString(m_doorCell);
 		}
-		else if (subrecord.type() == MakeRecordType('DODT'))
+		else if (subrecord.subrecordType() == MakeRecordType('DODT'))
 		{
 			reader.read(m_doorTransform);
 		}
-		else if (subrecord.type() == MakeRecordType('KNAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('KNAM'))
 		{
 			reader.readString(m_key);
 		}
-		else if (subrecord.type() == MakeRecordType('FLTV'))
+		else if (subrecord.subrecordType() == MakeRecordType('FLTV'))
 		{
 			reader.read(m_lockLevel);
 		}
-		else if (subrecord.type() == MakeRecordType('TNAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('TNAM'))
 		{
 			reader.readString(m_trap);
 		}
-		else if (subrecord.type() == MakeRecordType('ANAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('ANAM'))
 		{
 			reader.readString(m_owner);
 		}
-		else if (subrecord.type() == MakeRecordType('BNAM'))
+		else if (subrecord.subrecordType() == MakeRecordType('BNAM'))
 		{
 			reader.readString(m_global);
 		}
-		else if (subrecord.type() == MakeRecordType('INTV'))
+		else if (subrecord.subrecordType() == MakeRecordType('INTV'))
 		{
 			reader.read(m_uses);
 		}
-		else if (subrecord.type() == MakeRecordType('XSOL'))
+		else if (subrecord.subrecordType() == MakeRecordType('XSOL'))
 		{
 			reader.readString(m_soul);
 		}

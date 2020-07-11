@@ -13,8 +13,10 @@ namespace libtes3
 	{
 	public:
 		TES3Plugin(const char* filename);
-		MemoryReader data();
 
+		std::string filename() const;
+
+		TES3PluginReader data() const;
 		TES3RecordRange records() const;
 
 		template<typename T>
@@ -23,8 +25,23 @@ namespace libtes3
 			return TES3TypedRecordRange<T>(records());
 		}
 
+		template<typename T>
+		std::optional<T> findRecord(const std::string& id) const
+		{
+			for (const auto& record : records<T>())
+			{
+				if (record.id() == id)
+				{
+					return record;
+				}
+			}
+
+			return std::nullopt;
+		}
+
 	private:
-		MemoryReader m_reader;
+		std::string m_filename;
+		TES3PluginReader m_reader;
 		std::vector<char> m_data;
 	};
 

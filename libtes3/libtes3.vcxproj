@@ -92,6 +92,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -111,6 +112,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -130,6 +132,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -149,6 +152,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -176,7 +180,7 @@
     <ClInclude Include="RecordTypes\TES3.h" />
     <ClInclude Include="nonstd_span.h" />
     <ClInclude Include="TES3Plugin.h" />
-    <ClInclude Include="MemoryReader.h" />
+    <ClInclude Include="TES3PluginReader.h" />
     <ClInclude Include="TES3Record.h" />
     <ClInclude Include="TES3RecordIterator.h" />
     <ClInclude Include="TES3RecordRange.h" />
@@ -187,7 +191,7 @@
     <ClInclude Include="TES3TypedRecordRange.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MemoryReader.cpp" />
+    <ClCompile Include="TES3PluginReader.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

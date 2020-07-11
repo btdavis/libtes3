@@ -4,36 +4,42 @@ namespace libtes3
 {
 
 	DOOR::DOOR(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('NAME'))
+			if (subrecord.subrecordType() == MakeRecordType('NAME'))
 			{
 				reader.readString(m_name);
 			}
-			else if (subrecord.type() == MakeRecordType('MODL'))
+			else if (subrecord.subrecordType() == MakeRecordType('MODL'))
 			{
 				reader.readString(m_model);
 			}
-			else if (subrecord.type() == MakeRecordType('FNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('FNAM'))
 			{
 				reader.readString(m_friendlyName);
 			}
-			else if (subrecord.type() == MakeRecordType('SCIP'))
+			else if (subrecord.subrecordType() == MakeRecordType('SCIP'))
 			{
 				reader.readString(m_scriptName);
 			}
-			else if (subrecord.type() == MakeRecordType('SNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('SNAM'))
 			{
 				reader.readString(m_soundOpen);
 			}
-			else if (subrecord.type() == MakeRecordType('ANAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('ANAM'))
 			{
 				reader.readString(m_soundClose);
 			}
 		}
+	}
+
+	std::string DOOR::id() const
+	{
+		return std::string(name());
 	}
 
 	std::string_view DOOR::name() const

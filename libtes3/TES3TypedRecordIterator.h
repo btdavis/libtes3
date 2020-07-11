@@ -15,7 +15,7 @@ namespace libtes3
 		TES3TypedRecordIterator(TES3RecordIterator base)
 			: m_base(base)
 		{
-			while (m_base.isValid() && (m_base->type() != T::Type))
+			while (m_base.isValid() && (m_base->recordType() != T::Type))
 			{
 				++m_base;
 			}
@@ -45,7 +45,7 @@ namespace libtes3
 		{
 			++m_base;
 
-			while (m_base.isValid() && (m_base->type() != T::Type))
+			while (m_base.isValid() && (m_base->recordType() != T::Type))
 			{
 				++m_base;
 			}

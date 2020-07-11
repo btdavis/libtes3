@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class LTEX
+	class LTEX: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('LTEX');
 
 		LTEX(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		std::string_view name() const;
 		int32_t index() const;

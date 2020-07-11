@@ -27,191 +27,146 @@ TEST_CLASS(RecordTypes)
 public:
 	TEST_METHOD(ReadTES3)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<TES3>("");
 
-		for (const auto& tes3 : g_plugin->records<TES3>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			foundRecord = true;
-			Assert::AreEqual(1.2f, tes3.version());
+			Assert::AreEqual(1.2f, record->version());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadGMST)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<GMST>("sOK");
 
-		for (const auto& gmst : g_plugin->records<GMST>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (gmst.name() == "sOK")
-			{
-				foundRecord = true;
-				Assert::AreEqual("OK"sv, gmst.value());
-			}
+			Assert::AreEqual("OK"sv, record->value());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadGLOB)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<GLOB>("Year");
 
-		for (const auto& glob : g_plugin->records<GLOB>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (glob.name() == "Year")
-			{
-				foundRecord = true;
-				Assert::AreEqual(427.0f, glob.value());
-			}
+			Assert::AreEqual(427.0f, record->value());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadLTEX)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<LTEX>("Sand");
 
-		for (const auto& ltex : g_plugin->records<LTEX>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (ltex.name() == "Sand")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Tx_sand_01.tga"sv, ltex.texture());
-			}
+			Assert::AreEqual("Tx_sand_01.tga"sv, record->texture());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadLAND)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<LAND>("19,-7");
 
-		for (const auto& land : g_plugin->records<LAND>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (land.cellX() == 19 && land.cellY() == -7)
-			{
-				foundRecord = true;
-				Assert::AreEqual(306.0f, land.heightOffset());
-			}
+			Assert::AreEqual(306.0f, record->heightOffset());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadSTAT)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<STAT>("DoorMarker");
 
-		for (const auto& stat : g_plugin->records<STAT>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (stat.name() == "DoorMarker")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Marker_Arrow.nif"sv, stat.model());
-			}
+			Assert::AreEqual("Marker_Arrow.nif"sv, record->model());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadSCPT)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<SCPT>("ajiraReports");
 
-		for (const auto& scpt : g_plugin->records<SCPT>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (scpt.name() == "ajiraReports")
-			{
-				foundRecord = true;
-				Assert::IsTrue(scpt.script().find("Begin ajiraReports") != std::string_view::npos);
-			}
+			Assert::IsTrue(record->script().find("Begin ajiraReports") != std::string_view::npos);
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadACTI)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<ACTI>("furn_sign_inn_01");
 
-		for (const auto& acti : g_plugin->records<ACTI>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (acti.name() == "furn_sign_inn_01")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Imperial Tavern"sv, acti.friendlyName());
-			}
+			Assert::AreEqual("Imperial Tavern"sv, record->friendlyName());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadCONT)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<CONT>("crate_01");
 
-		for (const auto& cont : g_plugin->records<CONT>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (cont.name() == "crate_01")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Crate"sv, cont.friendlyName());
-			}
+			Assert::AreEqual("Crate"sv, record->friendlyName());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadDOOR)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<DOOR>("in_c_door_arched");
 
-		for (const auto& door : g_plugin->records<DOOR>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (door.name() == "in_c_door_arched")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Sturdy Arched Door"sv, door.friendlyName());
-			}
+			Assert::AreEqual("Sturdy Arched Door"sv, record->friendlyName());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadLIGH)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<LIGH>("light_com_candle_03");
 
-		for (const auto& ligh : g_plugin->records<LIGH>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (ligh.name() == "light_com_candle_03")
-			{
-				foundRecord = true;
-				Assert::AreEqual("Silver Candlestick"sv, ligh.friendlyName());
-			}
+			Assert::AreEqual("Silver Candlestick"sv, record->friendlyName());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 
 	TEST_METHOD(ReadCELL)
 	{
-		bool foundRecord = false;
+		auto record = g_plugin->findRecord<CELL>("Addamasartus");
 
-		for (const auto& cell : g_plugin->records<CELL>())
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
 		{
-			if (cell.name() == "Addamasartus")
-			{
-				foundRecord = true;
-				Assert::AreEqual(size_t(285), cell.references().size());
-			}
+			Assert::AreEqual(size_t(285), record->references().size());
 		}
-
-		Assert::IsTrue(foundRecord);
 	}
 };
 

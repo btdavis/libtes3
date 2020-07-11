@@ -1,9 +1,10 @@
 #include "TES3Record.h"
+#include "TES3Plugin.h"
 
 namespace libtes3
 {
 
-	TES3Record::TES3Record(MemoryReader& reader)
+	TES3Record::TES3Record(TES3PluginReader& reader)
 	{
 		uint32_t size;
 
@@ -16,7 +17,17 @@ namespace libtes3
 		reader.seek(size);
 	}
 
-	MemoryReader TES3Record::data() const
+	std::string TES3Record::id() const
+	{
+		return "";
+	}
+
+	TES3Plugin *TES3Record::plugin() const
+	{
+		return m_reader.plugin();
+	}
+
+	TES3PluginReader TES3Record::recordData() const
 	{
 		return m_reader.spanAll();
 	}
@@ -31,47 +42,19 @@ namespace libtes3
 		return TES3SubrecordIterator();
 	}
 
-	TES3RecordType TES3Record::type() const
+	TES3RecordType TES3Record::recordType() const
 	{
 		return m_type;
 	}
 
-	uint32_t TES3Record::header() const
+	uint32_t TES3Record::recordHeader() const
 	{
 		return m_header;
 	}
 
-	uint32_t TES3Record::flags() const
+	uint32_t TES3Record::recordFlags() const
 	{
 		return m_flags;
-	}
-
-	std::optional<TES3Subrecord> TES3Record::firstSubrecord(TES3RecordType type) const
-	{
-		for (const auto& subrecord : (*this))
-		{
-			if (subrecord.type() == type)
-			{
-				return subrecord;
-			}
-		}
-
-		return std::nullopt;
-	}
-
-	std::vector<TES3Subrecord> TES3Record::allSubrecords(TES3RecordType type) const
-	{
-		std::vector<TES3Subrecord> result;
-
-		for (const auto& subrecord : (*this))
-		{
-			if (subrecord.type() == type)
-			{
-				result.push_back(subrecord);
-			}
-		}
-
-		return result;
 	}
 
 }

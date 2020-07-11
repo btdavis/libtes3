@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="MemoryReader.h" />
     <ClInclude Include="TES3Record.h" />
     <ClInclude Include="TES3Subrecord.h" />
     <ClInclude Include="TES3RecordIterator.h" />
@@ -53,10 +52,10 @@
       <Filter>RecordTypes</Filter>
     </ClInclude>
     <ClInclude Include="nonstd_span.h" />
+    <ClInclude Include="TES3PluginReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="MemoryReader.cpp" />
     <ClCompile Include="TES3Record.cpp" />
     <ClCompile Include="TES3Subrecord.cpp" />
     <ClCompile Include="TES3RecordIterator.cpp" />
@@ -102,6 +101,7 @@
     <ClCompile Include="RecordTypes\TES3.cpp">
       <Filter>RecordTypes</Filter>
     </ClCompile>
+    <ClCompile Include="TES3PluginReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RecordTypes">

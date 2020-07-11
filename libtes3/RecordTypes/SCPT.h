@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class SCPT
+	class SCPT: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('SCPT');
 
 		SCPT(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		std::string_view name() const;
 		std::vector<std::string_view> locals() const;

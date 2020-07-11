@@ -4,16 +4,17 @@ namespace libtes3
 {
 
 	GLOB::GLOB(const TES3Record& from)
+		: TES3Record(from)
 	{
 		for (const auto& subrecord : from)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('NAME'))
+			if (subrecord.subrecordType() == MakeRecordType('NAME'))
 			{
 				reader.readString(m_name);
 			}
-			else if (subrecord.type() == MakeRecordType('FNAM'))
+			else if (subrecord.subrecordType() == MakeRecordType('FNAM'))
 			{
 				char value;
 				reader.read(value);
@@ -34,11 +35,16 @@ namespace libtes3
 					break;
 				}
 			}
-			else if (subrecord.type() == MakeRecordType('FLTV'))
+			else if (subrecord.subrecordType() == MakeRecordType('FLTV'))
 			{
 				reader.read(m_value);
 			}
 		}
+	}
+
+	std::string GLOB::id() const
+	{
+		return std::string(name());
 	}
 
 	std::string_view GLOB::name() const

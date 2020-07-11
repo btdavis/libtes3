@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class DOOR
+	class DOOR: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('DOOR');
 
 		DOOR(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		std::string_view name() const;
 		std::string_view model() const;

@@ -4,45 +4,74 @@ namespace libtes3
 {
 
 	CELL::CELL(const TES3Record& from)
+		: TES3Record(from)
 	{
-		for (const auto& subrecord : from)
+		for (const auto& subrecord : *this)
 		{
-			auto reader = subrecord.data();
+			auto reader = subrecord.subrecordData();
 
-			if (subrecord.type() == MakeRecordType('FRMR'))
-			{
-				m_references.push_back(CELLRef());
-				m_references.back().addSubrecord(subrecord);
-			}
-			else if (!m_references.empty())
-			{
-				m_references.back().addSubrecord(subrecord);
-			}
-			else if (subrecord.type() == MakeRecordType('NAME'))
+			if (subrecord.subrecordType() == MakeRecordType('NAME'))
 			{
 				reader.readString(m_name);
 			}
-			else if (subrecord.type() == MakeRecordType('DATA'))
+			else if (subrecord.subrecordType() == MakeRecordType('DATA'))
 			{
 				reader.read(m_flags);
 				reader.read(m_cellX);
 				reader.read(m_cellY);
 			}
-			else if (subrecord.type() == MakeRecordType('RGNN'))
+			else if (subrecord.subrecordType() == MakeRecordType('RGNN'))
 			{
 				reader.readString(m_region);
 			}
-			else if (subrecord.type() == MakeRecordType('WHGT'))
+			else if (subrecord.subrecordType() == MakeRecordType('WHGT'))
 			{
 				reader.read(m_waterHeight);
 			}
-			else if (subrecord.type() == MakeRecordType('AMBI'))
+			else if (subrecord.subrecordType() == MakeRecordType('AMBI'))
 			{
 				reader.read(m_ambientColor);
 				reader.read(m_sunlightColor);
 				reader.read(m_fogColor);
 				reader.read(m_fogDensity);
 			}
+			else if (subrecord.subrecordType() == MakeRecordType('FRMR'))
+			{
+				break; // cell references will be loaded later by readReferences()
+			}
+		}
+	}
+
+	// lazy load references
+	void CELL::readReferences() const
+	{
+		m_references.clear();
+
+		for (const auto& subrecord : *this)
+		{
+			auto reader = subrecord.subrecordData();
+
+			if (subrecord.subrecordType() == MakeRecordType('FRMR'))
+			{
+				m_references.push_back(CELLRef(plugin()));
+				m_references.back().addSubrecord(subrecord);
+			}
+			else if (!m_references.empty())
+			{
+				m_references.back().addSubrecord(subrecord);
+			}
+		}
+	}
+
+	std::string CELL::id() const
+	{
+		if (flags() & FlagInterior)
+		{
+			return std::string(name());
+		}
+		else
+		{
+			return std::to_string(cellX()) + "," + std::to_string(cellY());
 		}
 	}
 
@@ -98,6 +127,11 @@ namespace libtes3
 
 	const std::vector<CELLRef>& CELL::references() const
 	{
+		if (m_references.empty())
+		{
+			readReferences();
+		}
+
 		return m_references;
 	}
 

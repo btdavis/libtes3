@@ -8,12 +8,14 @@
 namespace libtes3
 {
 
-	class GLOB
+	class GLOB: public TES3Record
 	{
 	public:
 		static constexpr TES3RecordType Type = MakeRecordType('GLOB');
 
 		GLOB(const TES3Record& from);
+
+		virtual std::string id() const override;
 
 		enum class ValueType
 		{
