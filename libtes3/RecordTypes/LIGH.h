@@ -23,6 +23,17 @@ namespace libtes3
 		static constexpr uint32_t Flag_Pulse = 0x0080;
 		static constexpr uint32_t Flag_PulseSlow = 0x0100;
 
+#pragma pack(push)
+#pragma pack(1)
+		struct Color
+		{
+			uint8_t r = 0;
+			uint8_t g = 0;
+			uint8_t b = 0;
+			uint8_t a = 0;
+		};
+#pragma pack(pop)
+
 		LIGH(const TES3Record& from);
 
 		std::string_view name() const;
@@ -35,7 +46,7 @@ namespace libtes3
 		uint32_t value() const;
 		uint32_t time() const;
 		uint32_t radius() const;
-		uint32_t color() const;
+		Color color() const;
 		uint32_t flags() const;
 
 	private:
@@ -49,7 +60,7 @@ namespace libtes3
 		uint32_t m_value = 0;
 		uint32_t m_time = 0;
 		uint32_t m_radius = 0;
-		uint32_t m_color = 0;
+		Color m_color;
 		uint32_t m_flags = 0;
 	};
 

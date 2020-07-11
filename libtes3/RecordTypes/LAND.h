@@ -2,7 +2,7 @@
 #define LAND_H
 
 #include <string>
-#include "../span.h"
+#include "../nonstd_span.h"
 
 #include "../TES3Record.h"
 
@@ -27,9 +27,9 @@ namespace libtes3
 
 		struct Color
 		{
-			uint8_t x = 0;
-			uint8_t y = 0;
-			uint8_t z = 0;
+			uint8_t r = 0;
+			uint8_t g = 0;
+			uint8_t b = 0;
 		};
 #pragma pack(pop)
 

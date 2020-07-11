@@ -2,7 +2,7 @@
 #define TES3READER_H
 
 #include <string_view>
-#include "span.h"
+#include "nonstd_span.h"
 
 namespace libtes3
 {

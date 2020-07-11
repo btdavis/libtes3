@@ -49,10 +49,10 @@
     <ClInclude Include="RecordTypes\CELLRef.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
-    <ClInclude Include="span.h" />
     <ClInclude Include="RecordTypes\TES3.h">
       <Filter>RecordTypes</Filter>
     </ClInclude>
+    <ClInclude Include="nonstd_span.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />

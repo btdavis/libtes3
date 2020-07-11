@@ -26,26 +26,43 @@ namespace libtes3
 		};
 #pragma pack(pop)
 
-		int32_t index() const;
-		std::string_view id() const;
+		uint32_t refMasterId() const;
+		uint32_t refId() const;
+		std::string_view name() const;
 
+		bool deleted() const;
+		bool blocked() const;
+
+		Transform transform() const;
+		float scale() const;
+
+		std::string_view doorCell() const;
+		Transform doorTransform() const;
+
+		std::string_view key() const;
+		int32_t lockLevel() const;
+		std::string_view trap() const;
+
+		std::string_view owner() const;
 		std::string_view global() const;
+		int32_t uses() const;
+		std::string_view soul() const;
 
 	private:
-		int32_t m_index = 0;
-		std::string_view m_id;
+		uint32_t m_refId = 0;
+		std::string_view m_name;
 		int32_t m_deleted = 0;
 		int8_t m_blocked = 0;
 
 		Transform m_transform;
 		float m_scale = 1.0f;
 
-		std::string_view m_exitName;
-		Transform m_exitTransform;
+		std::string_view m_doorCell;
+		Transform m_doorTransform;
 
 		std::string_view m_key;
 		int32_t m_lockLevel = 0;
-		std::string_view m_trapName;
+		std::string_view m_trap;
 
 		std::string_view m_owner;
 		std::string_view m_global;

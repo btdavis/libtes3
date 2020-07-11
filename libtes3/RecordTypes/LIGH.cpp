@@ -95,7 +95,7 @@ namespace libtes3
 		return m_radius;
 	}
 
-	uint32_t LIGH::color() const
+	LIGH::Color LIGH::color() const
 	{
 		return m_color;
 	}

@@ -20,6 +20,17 @@ namespace libtes3
 		static constexpr uint32_t FlagNoSleep = 0x04;
 		static constexpr uint32_t FlagInteriorWeather = 0x08;
 
+#pragma pack(push)
+#pragma pack(1)
+		struct Color
+		{
+			uint8_t r = 0;
+			uint8_t g = 0;
+			uint8_t b = 0;
+			uint8_t a = 0;
+		};
+#pragma pack(pop)
+
 		CELL(const TES3Record& from);
 
 		std::string_view name() const;
@@ -28,6 +39,13 @@ namespace libtes3
 		int32_t cellX() const;
 		int32_t cellY() const;
 		uint32_t flags() const;
+
+		float waterHeight() const;
+
+		Color ambientColor() const;
+		Color sunlightColor() const;
+		Color fogColor() const;
+		float fogDensity() const;
 
 		const std::vector<CELLRef>& references() const;
 
@@ -41,9 +59,9 @@ namespace libtes3
 
 		float m_waterHeight = 0.0f;
 
-		uint32_t m_ambientColor = 0;
-		uint32_t m_sunlightColor = 0;
-		uint32_t m_fogColor = 0;
+		Color m_ambientColor;
+		Color m_sunlightColor;
+		Color m_fogColor;
 		float m_fogDensity = 0.0f;
 
 		std::vector<CELLRef> m_references;

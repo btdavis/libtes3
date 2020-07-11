@@ -71,6 +71,31 @@ namespace libtes3
 		return m_flags;
 	}
 
+	float CELL::waterHeight() const
+	{
+		return m_waterHeight;
+	}
+
+	CELL::Color CELL::ambientColor() const
+	{
+		return m_ambientColor;
+	}
+
+	CELL::Color CELL::sunlightColor() const
+	{
+		return m_sunlightColor;
+	}
+
+	CELL::Color CELL::fogColor() const
+	{
+		return m_fogColor;
+	}
+
+	float CELL::fogDensity() const
+	{
+		return m_fogDensity;
+	}
+
 	const std::vector<CELLRef>& CELL::references() const
 	{
 		return m_references;

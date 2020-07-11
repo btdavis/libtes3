@@ -174,7 +174,7 @@
     <ClInclude Include="RecordTypes\SCPT.h" />
     <ClInclude Include="RecordTypes\STAT.h" />
     <ClInclude Include="RecordTypes\TES3.h" />
-    <ClInclude Include="span.h" />
+    <ClInclude Include="nonstd_span.h" />
     <ClInclude Include="TES3Plugin.h" />
     <ClInclude Include="MemoryReader.h" />
     <ClInclude Include="TES3Record.h" />

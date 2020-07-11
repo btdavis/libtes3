@@ -11,8 +11,8 @@
 #include <cstdint>
 #include <string>
 #include <optional>
-#include <span>
 #include <string_view>
+#include "nonstd_span.h"
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 
