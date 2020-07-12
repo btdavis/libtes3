@@ -25,11 +25,33 @@ namespace libtes3
 
 		m_filename = fname;
 		m_filename += ext;
+		_strupr_s(m_filename.data(), m_filename.length() + 1);
+
+		for (const auto& record : records<TES3>())
+		{
+			m_header = record;
+		}
 	}
 
 	std::string TES3Plugin::filename() const
 	{
 		return m_filename;
+	}
+
+	std::string TES3Plugin::masterPlugin(int index) const
+	{
+		if (index == 0)
+		{
+			return filename();
+		}
+		else if (m_header.has_value() && (index <= m_header->masterPlugins().size()))
+		{
+			std::string result(m_header->masterPlugins()[index - 1].name);
+			_strupr_s(result.data(), result.length() + 1);
+			return result;
+		}
+
+		return "";
 	}
 
 	TES3PluginReader TES3Plugin::data() const

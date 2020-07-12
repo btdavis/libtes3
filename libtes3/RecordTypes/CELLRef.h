@@ -8,16 +8,11 @@
 
 namespace libtes3
 {
+	class CELL;
 
 	class CELLRef
 	{
 	public:
-		CELLRef(TES3Plugin* plugin);
-
-		TES3Plugin* plugin() const;
-
-		void addSubrecord(const TES3Subrecord& subrecord);
-
 #pragma pack(push)
 #pragma pack(1)
 		struct Transform
@@ -30,6 +25,13 @@ namespace libtes3
 			float m_rotZ = 0.0f;
 		};
 #pragma pack(pop)
+
+		CELLRef(const CELL& cell);
+
+		const CELL& cell() const;
+		std::string id() const;
+
+		void addSubrecord(const TES3Subrecord& subrecord);
 
 		uint32_t refMasterId() const;
 		uint32_t refId() const;
@@ -54,7 +56,7 @@ namespace libtes3
 		std::string_view soul() const;
 
 	private:
-		TES3Plugin* m_plugin = nullptr;
+		const CELL& m_cell;
 
 		uint32_t m_refId = 0;
 		std::string_view m_name;

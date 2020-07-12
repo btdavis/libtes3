@@ -1,15 +1,22 @@
 #include "CELLRef.h"
+#include "CELL.h"
+#include "../TES3Plugin.h"
 
 namespace libtes3
 {
-	CELLRef::CELLRef(TES3Plugin* plugin)
-		: m_plugin(plugin)
+	CELLRef::CELLRef(const CELL& cell)
+		: m_cell(cell)
 	{
 	}
 
-	TES3Plugin* CELLRef::plugin() const
+	const CELL& CELLRef::cell() const
 	{
-		return m_plugin;
+		return m_cell;
+	}
+
+	std::string CELLRef::id() const
+	{
+		return cell().plugin()->masterPlugin(refMasterId()) + "\x01" + cell().id() + "\x01" + std::to_string(refId());
 	}
 
 	void CELLRef::addSubrecord(const TES3Subrecord& subrecord)

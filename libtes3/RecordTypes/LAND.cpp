@@ -38,7 +38,7 @@ namespace libtes3
 
 	std::string LAND::id() const
 	{
-		return std::to_string(cellX()) + "," + std::to_string(cellY());
+		return "(" + std::to_string(cellX()) + "," + std::to_string(cellY()) + ")";
 	}
 
 	int32_t LAND::cellX() const

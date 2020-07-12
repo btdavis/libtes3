@@ -75,7 +75,7 @@ public:
 
 	TEST_METHOD(ReadLAND)
 	{
-		auto record = g_plugin->findRecord<LAND>("19,-7");
+		auto record = g_plugin->findRecord<LAND>("(19,-7)");
 
 		Assert::IsTrue(record != std::nullopt);
 

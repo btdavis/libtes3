@@ -53,7 +53,7 @@ namespace libtes3
 
 			if (subrecord.subrecordType() == MakeRecordType('FRMR'))
 			{
-				m_references.push_back(CELLRef(plugin()));
+				m_references.push_back(CELLRef(*this));
 				m_references.back().addSubrecord(subrecord);
 			}
 			else if (!m_references.empty())
@@ -71,7 +71,7 @@ namespace libtes3
 		}
 		else
 		{
-			return std::to_string(cellX()) + "," + std::to_string(cellY());
+			return "(" + std::to_string(cellX()) + "," + std::to_string(cellY()) + ")";
 		}
 	}
 

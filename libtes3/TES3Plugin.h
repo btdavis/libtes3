@@ -6,6 +6,8 @@
 #include "TES3RecordRange.h"
 #include "TES3TypedRecordRange.h"
 
+#include "RecordTypes/TES3.h"
+
 namespace libtes3
 {
 
@@ -15,6 +17,7 @@ namespace libtes3
 		TES3Plugin(const char* filename);
 
 		std::string filename() const;
+		std::string masterPlugin(int index) const;
 
 		TES3PluginReader data() const;
 		TES3RecordRange records() const;
@@ -43,6 +46,8 @@ namespace libtes3
 		std::string m_filename;
 		TES3PluginReader m_reader;
 		std::vector<char> m_data;
+
+		std::optional<TES3> m_header;
 	};
 
 }
