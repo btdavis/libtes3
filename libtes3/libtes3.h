@@ -7,6 +7,7 @@
 #include "TES3RecordType.h"
 
 #include "RecordTypes/ACTI.h"
+#include "RecordTypes/APPA.h"
 #include "RecordTypes/CELL.h"
 #include "RecordTypes/CONT.h"
 #include "RecordTypes/DOOR.h"
@@ -14,7 +15,10 @@
 #include "RecordTypes/GMST.h"
 #include "RecordTypes/LAND.h"
 #include "RecordTypes/LIGH.h"
+#include "RecordTypes/LOCK.h"
 #include "RecordTypes/LTEX.h"
+#include "RecordTypes/MISC.h"
+#include "RecordTypes/PROB.h"
 #include "RecordTypes/SCPT.h"
 #include "RecordTypes/STAT.h"
 #include "RecordTypes/TES3.h"

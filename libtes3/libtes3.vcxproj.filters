@@ -53,6 +53,18 @@
     </ClInclude>
     <ClInclude Include="nonstd_span.h" />
     <ClInclude Include="TES3PluginReader.h" />
+    <ClInclude Include="RecordTypes\MISC.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\APPA.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\LOCK.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordTypes\PROB.h">
+      <Filter>RecordTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -102,6 +114,18 @@
       <Filter>RecordTypes</Filter>
     </ClCompile>
     <ClCompile Include="TES3PluginReader.cpp" />
+    <ClCompile Include="RecordTypes\MISC.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\APPA.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\LOCK.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordTypes\PROB.cpp">
+      <Filter>RecordTypes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="RecordTypes">

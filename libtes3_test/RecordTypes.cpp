@@ -168,6 +168,54 @@ public:
 			Assert::AreEqual(size_t(285), record->references().size());
 		}
 	}
+
+	TEST_METHOD(ReadAPPA)
+	{
+		auto record = g_plugin->findRecord<APPA>("apparatus_j_alembic_01");
+
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
+		{
+			Assert::AreEqual("Journeyman's Alembic"sv, record->friendlyName());
+		}
+	}
+
+	TEST_METHOD(ReadMISC)
+	{
+		auto record = g_plugin->findRecord<MISC>("misc_dwrv_coin00");
+
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
+		{
+			Assert::AreEqual("Dwemer Coin"sv, record->friendlyName());
+		}
+	}
+
+	TEST_METHOD(ReadLOCK)
+	{
+		auto record = g_plugin->findRecord<LOCK>("pick_apprentice_01");
+
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
+		{
+			Assert::AreEqual("Apprentice's Lockpick"sv, record->friendlyName());
+		}
+	}
+
+	TEST_METHOD(ReadPROB)
+	{
+		auto record = g_plugin->findRecord<PROB>("probe_bent");
+
+		Assert::IsTrue(record != std::nullopt);
+
+		if (record != std::nullopt)
+		{
+			Assert::AreEqual("Bent Probe"sv, record->friendlyName());
+		}
+	}
 };
 
 }
