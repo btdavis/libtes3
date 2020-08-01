@@ -56,11 +56,27 @@ namespace libtes3
 		return m_heightOffset;
 	}
 
+	float LAND::height(int x, int y) const
+	{
+		initHeights();
+
+		size_t index = y * heightGridSize() + x;
+
+		if (!m_heights.empty())
+		{
+			return m_heights[index];
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 	int8_t LAND::heightDelta(int x, int y) const
 	{
-		size_t index = y * 65 + x;
+		size_t index = y * heightGridSize() + x;
 
-		if (m_heightDeltas.empty())
+		if (!m_heightDeltas.empty())
 		{
 			return m_heightDeltas[index];
 		}
@@ -72,9 +88,9 @@ namespace libtes3
 
 	LAND::Normal LAND::normal(int x, int y) const
 	{
-		size_t index = y * 65 + x;
+		size_t index = y * normalGridSize() + x;
 
-		if (m_normals.empty())
+		if (!m_normals.empty())
 		{
 			return m_normals[index];
 		}
@@ -86,9 +102,9 @@ namespace libtes3
 
 	LAND::Color LAND::color(int x, int y) const
 	{
-		size_t index = y * 65 + x;
+		size_t index = y * colorGridSize() + x;
 
-		if (m_colors.empty())
+		if (!m_colors.empty())
 		{
 			return m_colors[index];
 		}
@@ -100,9 +116,9 @@ namespace libtes3
 
 	uint16_t LAND::textureIndex(int x, int y) const
 	{
-		size_t index = y * 16 + x;
+		size_t index = y * textureIndexGridSize() + x;
 
-		if (m_textureIndexes.empty())
+		if (!m_textureIndexes.empty())
 		{
 			return m_textureIndexes[index];
 		}
@@ -112,4 +128,29 @@ namespace libtes3
 		}
 	}
 
+	void LAND::initHeights() const
+	{
+		if (m_heights.empty() && !m_heightDeltas.empty())
+		{
+			m_heights.resize(m_heightDeltas.size());
+
+			float yHeight = m_heightOffset;
+
+			for (int y = 0; y < heightGridSize(); y++)
+			{
+				int index = y * heightGridSize();
+				yHeight += m_heightDeltas[index];
+				m_heights[index] = yHeight;
+
+				float xHeight = yHeight;
+
+				for (int x = 1; x < heightGridSize(); x++)
+				{
+					int xIndex = index + x;
+					xHeight += m_heightDeltas[xIndex];
+					m_heights[xIndex] = xHeight;
+				}
+			}
+		}
+	}
 }

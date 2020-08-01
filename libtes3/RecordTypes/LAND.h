@@ -38,10 +38,16 @@ namespace libtes3
 		int32_t cellX() const;
 		int32_t cellY() const;
 		float heightOffset() const;
+		float height(int x, int y) const;
 		int8_t heightDelta(int x, int y) const;
 		Normal normal(int x, int y) const;
 		Color color(int x, int y) const;
 		uint16_t textureIndex(int x, int y) const;
+
+		static constexpr int heightGridSize() { return 65; }
+		static constexpr int normalGridSize() { return 65; }
+		static constexpr int colorGridSize() { return 65; }
+		static constexpr int textureIndexGridSize() { return 16; }
 
 	private:
 		int32_t m_cellX = 0;
@@ -52,6 +58,9 @@ namespace libtes3
 		nonstd::span<Normal> m_normals;
 		nonstd::span<Color> m_colors;
 		nonstd::span<uint16_t> m_textureIndexes;
+
+		void initHeights() const;
+		mutable std::vector<float> m_heights;
 	};
 
 }
